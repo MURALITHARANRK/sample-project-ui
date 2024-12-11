@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import{FormControl,FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,22 +16,22 @@ export class LoginComponent {
     role: new FormControl(''),
 
   });
-  constructor(private router:Router, private activatedRoute: ActivatedRoute){
+  constructor(private router:Router, private activatedRoute: ActivatedRoute, private auth: AuthService){
     let x = this.activatedRoute.snapshot.paramMap.get('role')
     this.form.controls.role.setValue(x);
   }
   
 
   onsubmit(){
-    if(this.form.valid){
-    localStorage.setItem("username", this.form.get('username')?. value as string)
-    console.log(this.form.value)
-    // this.router.navigate(['navbar'])
+
+    let message = this.auth.login(this.form.value)
+    
+    if(message){
+      this.router.navigate(['/navbar/home'])
     }
     else{
-      alert("login with Valid details")
+      alert("Wrong username or password")
     }
-  }
-
-
+    console.log(this.form.value)
+    }
 }
