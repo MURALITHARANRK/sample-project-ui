@@ -16,6 +16,11 @@ export const routes: Routes = [
         path:'',
         redirectTo: 'login',
         pathMatch: 'full'
-    }
+    },
+    {
+        path: 'role',
+        loadComponent: ()=>import('./role/role.component').then(c=>c.RoleComponent)
+    },
+    
 
 ];
