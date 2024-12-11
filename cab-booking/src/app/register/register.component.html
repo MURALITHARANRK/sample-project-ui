@@ -1,0 +1,82 @@
+
+<body class="hold-transition register-page">
+    <div class="register-box">
+        <div class="register-logo">
+            <b>Registration</b>
+        </div>
+        <!-- Card -->
+        <div class="card">
+            <div class="card-body register-card-body">
+                <p class="login-box-msg">Register a new membership</p>
+
+                <form action="#" method="post">
+                    <!-- Username Field -->
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Username" name="username" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Role Field -->
+                    <div class="input-group mb-3">
+                        <select class="form-control" name="role" required>
+                            <option value="" disabled selected>Select Role</option>
+                            <option value="user">User</option>
+                            <option value="driver">Driver</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-user-tag"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Email Field -->
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Email" name="email" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Password Field -->
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Password" name="password" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password Field -->
+                    <div class="input-group mb-3">
+                        <input type="password" class="form-control" placeholder="Confirm Password" name="confirm_password" required>
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Register Button -->
+                    <div class="row">
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-primary btn-block">Register</button>
+                        </div>
+                    </div>
+                </form>
+
+                <p class="mt-3 mb-0">
+                    <a routerLink="/login" class="text-center">I already have a membership</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
