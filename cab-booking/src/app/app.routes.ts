@@ -5,7 +5,7 @@ import { LoginComponent } from './login/login.component';
 export const routes: Routes = [
 
     {
-        path: 'login',
+        path: 'login/:role',
         loadComponent: ()=>import('./login/login.component').then(c => c.LoginComponent)
     },
     {
@@ -20,6 +20,10 @@ export const routes: Routes = [
     {
         path: 'role',
         loadComponent: ()=>import('./role/role.component').then(c=>c.RoleComponent)
+    },
+    {
+        path: 'navbar',
+        loadComponent: ()=>import('./navbar/navbar.component').then(c=>c.NavbarComponent)
     },
     
 

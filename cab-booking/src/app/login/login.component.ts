@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import{FormControl,FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 
 @Component({
@@ -11,16 +11,21 @@ import{FormControl,FormGroup, FormsModule, ReactiveFormsModule, Validators} from
 export class LoginComponent {
   form=new FormGroup({
     username:new FormControl('', Validators.required),
-    password:new FormControl('',[Validators.required, Validators.minLength(8)])
+    password:new FormControl('',[Validators.required, Validators.minLength(8)]),
+    role: new FormControl(''),
 
   });
-  constructor(private router:Router){}
+  constructor(private router:Router, private activatedRoute: ActivatedRoute){
+    let x = this.activatedRoute.snapshot.paramMap.get('role')
+    this.form.controls.role.setValue(x);
+  }
   
 
   onsubmit(){
     if(this.form.valid){
     localStorage.setItem("username", this.form.get('username')?. value as string)
-    this.router.navigate(['register'])
+    console.log(this.form.value)
+    // this.router.navigate(['navbar'])
     }
     else{
       alert("login with Valid details")
