@@ -1,11 +1,17 @@
 .card-container {
-    margin: 50px auto;
+    margin: 30px 40px;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 100px;
     flex-wrap: wrap;
-    gap: 20px;
+    
+    
+    
   }
   .small-box {
     width: 100%;
+    margin: 5px;
+    gap: 5px;
+    
     max-width: 250px;
   }
