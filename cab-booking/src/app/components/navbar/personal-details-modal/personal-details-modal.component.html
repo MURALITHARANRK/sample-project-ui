@@ -2,7 +2,7 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Edit Details</h5>
+          <h5 class="modal-title" id="exampleModalLabel">User Details</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -11,43 +11,15 @@
           <form>
             <div class="form-group">
               <label for="name">Name</label>
-              <div class="d-flex align-items-center">
-                <span id="name-text" class="flex-grow-1">John Doe</span>
-                <input type="text" id="name-input" class="form-control d-none" value="John Doe">
-                <button type="button" class="btn btn-sm btn-link text-primary" onclick="toggleEdit('name')">
-                  <i class="fas fa-pen"></i>
-                </button>
-              </div>
+              <input type="text" class="form-control" id="name" placeholder="Enter Name">
             </div>
             <div class="form-group">
               <label for="email">Email</label>
-              <div class="d-flex align-items-center">
-                <span id="email-text" class="flex-grow-1">john.doe</span>
-                <input type="email" id="email-input" class="form-control d-none" value="john.doe@example.com">
-                <button type="button" class="btn btn-sm btn-link text-primary" onclick="toggleEdit('email')">
-                  <i class="fas fa-pen"></i>
-                </button>
-              </div>
+              <input type="email" class="form-control" id="email" placeholder="Enter Email">
             </div>
             <div class="form-group">
               <label for="username">Username</label>
-              <div class="d-flex align-items-center">
-                <span id="username-text" class="flex-grow-1">johndoe</span>
-                <input type="text" id="username-input" class="form-control d-none" value="johndoe">
-                <button type="button" class="btn btn-sm btn-link text-primary" onclick="toggleEdit('username')">
-                  <i class="fas fa-pen"></i>
-                </button>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="password">Password</label>
-              <div class="d-flex align-items-center">
-                <span id="password-text" class="flex-grow-1">••••••••</span>
-                <input type="password" id="password-input" class="form-control d-none" value="password123">
-                <button type="button" class="btn btn-sm btn-link text-primary" onclick="toggleEdit('password')">
-                  <i class="fas fa-pen"></i>
-                </button>
-              </div>
+              <input type="text" class="form-control" id="username" placeholder="Enter Username">
             </div>
           </form>
         </div>
