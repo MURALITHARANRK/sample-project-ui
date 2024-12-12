@@ -12,9 +12,13 @@ export const navbarRoutes: Routes = [
                 loadComponent: ()=>import('./home/home.component').then(c=>c.HomeComponent)
             },
             {
-                path: 'home',
-                loadComponent: ()=>import('./home/home.component').then(c=>c.HomeComponent)
+                path: 'user-booking',
+                loadComponent: ()=>import('./users/user-booking/user-booking.component').then(c=>c.UserBookingComponent)
             },
+            {
+                path: 'driver-ride',
+                loadComponent: ()=>import('./drivers/driver-ride/driver-ride.component').then(c=>c.DriverRideComponent)
+            }
         ]
     }
 ]
