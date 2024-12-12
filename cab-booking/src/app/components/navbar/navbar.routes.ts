@@ -10,7 +10,11 @@ export const navbarRoutes: Routes = [
             {
                 path: 'home',
                 loadComponent: ()=>import('./home/home.component').then(c=>c.HomeComponent)
-            }
+            },
+            {
+                path: 'home',
+                loadComponent: ()=>import('./home/home.component').then(c=>c.HomeComponent)
+            },
         ]
     }
 ]

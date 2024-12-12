@@ -1,0 +1,10 @@
+.content-wrapper {
+    margin-left: 250px;
+    transition: margin-left 0.3s;
+}
+.sidebar-closed .content-wrapper {
+    margin-left: 0;
+}
+.sidebar-closed .main-sidebar {
+    margin-left: -250px;
+}
