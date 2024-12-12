@@ -1,0 +1,17 @@
+user: 
+
+no of bookings
+riding state: no rides, in rides
+
+
+driver:
+
+no of bookings
+riding state: no rides, in rides
+
+admin:
+
+no of users
+no of drivers
+no of users online
+no of drivers online

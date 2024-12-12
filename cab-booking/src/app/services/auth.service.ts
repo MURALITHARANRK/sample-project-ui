@@ -1,14 +1,17 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../login/loginInterface';
+import { Login } from '../Interfaces/loginInterface';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-
+  setLocalStorage(token:any){
+    localStorage.setItem('token', token)
+  }
 
   isLoggedIn(){
     let authToken = localStorage.getItem('token')
@@ -16,7 +19,8 @@ export class AuthService {
   }
 
   login(userData:any){
-    //api call
+    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe((data)=>{console.log(data);
+    })
     return true;
 
   }

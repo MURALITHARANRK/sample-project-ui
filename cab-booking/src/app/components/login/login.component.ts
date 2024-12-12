@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import{FormControl,FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -19,6 +19,7 @@ export class LoginComponent {
   constructor(private router:Router, private activatedRoute: ActivatedRoute, private auth: AuthService){
     let x = this.activatedRoute.snapshot.paramMap.get('role')
     this.form.controls.role.setValue(x);
+    localStorage.setItem('role', x as string)
   }
   
 
@@ -27,6 +28,7 @@ export class LoginComponent {
     let message = this.auth.login(this.form.value)
     
     if(message){
+      this.auth.setLocalStorage('bjodnglfngpoekr32')
       this.router.navigate(['/navbar/home'])
     }
     else{

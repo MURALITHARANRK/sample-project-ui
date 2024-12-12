@@ -8,6 +8,7 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
   const newReq = req.clone({
     headers: req.headers.set('X-token', token)
   })
+  console.log(newReq);
   
-  return next(req);
+  return next(newReq);
 };

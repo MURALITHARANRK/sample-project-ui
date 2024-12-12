@@ -1,16 +1,17 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
+import { LoginComponent } from './components/login/login.component';
+import { navbarRoutes } from './components/navbar/navbar.routes';
 
 export const routes: Routes = [
 
     {
         path: 'login/:role',
-        loadComponent: ()=>import('./login/login.component').then(c => c.LoginComponent)
+        loadComponent: ()=>import('./components/login/login.component').then(c => c.LoginComponent)
     },
     {
         path: 'register',
-        loadComponent: ()=>import('./register/register.component').then(c=>c.RegisterComponent)
+        loadComponent: ()=>import('./components/register/register.component').then(c=>c.RegisterComponent)
     },
     {
         path:'',
@@ -19,12 +20,9 @@ export const routes: Routes = [
     },
     {
         path: 'role',
-        loadComponent: ()=>import('./role/role.component').then(c=>c.RoleComponent)
+        loadComponent: ()=>import('./components/role/role.component').then(c=>c.RoleComponent)
     },
-    {
-        path: 'navbar',
-        loadComponent: ()=>import('./navbar/navbar.component').then(c=>c.NavbarComponent)
-    },
+    ...navbarRoutes
     
 
 ];
