@@ -7,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
+ x=12;
+ y=13;
+ 
+
 
 }
