@@ -1,4 +1,4 @@
-[
+ [
   {
     "customerid": 1001,
     "name": "John",
@@ -88,5 +88,13 @@
     "contactnumber": "9876543211",
     "password": "admin_9876",
     "usertype": "user"
+  },
+  {
+    "username":"siva",
+    "role":"user",
+    "email":"siva@gmail.com",
+    "password":"password12345",
+    "confirmPassword":"password12345"
+
   }
 ]

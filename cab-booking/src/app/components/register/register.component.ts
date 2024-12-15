@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -12,8 +12,9 @@ import { RouterModule } from '@angular/router';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
+  userService: any;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder,private router:Router) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
       role: ['', Validators.required],
@@ -22,14 +23,28 @@ export class RegisterComponent {
       confirmPassword: ['', [Validators.required, this.passwordMatchValidator.bind(this)]]
     });
   }
+  ngOnInit(): void {
+    
+    this.userService.getMockData().subscribe(
+      (data: { [key: string]: any; }) => {
+       
+        this.registerForm.patchValue(data);
+      },
+      (error: any) => {
+        console.error('Error fetching mock data', error);
+      }
+    );
+  }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      console.log('Form Submitted', this.registerForm.value);
-    } else {
-      console.log('Form is invalid');
+      const user = this.registerForm.value; 
+      console.log('User submitted:', user);
+      this.router.navigate(['/login']); 
     }
   }
+
+
 
   passwordMatchValidator(control: FormControl): {[key:string]: boolean} | null{
     if(this.registerForm){
