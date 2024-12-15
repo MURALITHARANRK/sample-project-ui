@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -14,37 +15,27 @@ export class RegisterComponent {
   registerForm: FormGroup;
   userService: any;
 
-  constructor(private fb: FormBuilder,private router:Router) {
+  constructor(private fb: FormBuilder,private router:Router, private auth: AuthService) {
     this.registerForm = this.fb.group({
       username: ['', Validators.required],
-      role: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      usertype: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, this.passwordMatchValidator.bind(this)]]
     });
   }
   ngOnInit(): void {
-    
-    this.userService.getMockData().subscribe(
-      (data: { [key: string]: any; }) => {
-       
-        this.registerForm.patchValue(data);
-      },
-      (error: any) => {
-        console.error('Error fetching mock data', error);
-      }
-    );
   }
 
   onSubmit(): void {
     if (this.registerForm.valid) {
       const user = this.registerForm.value; 
-      console.log('User submitted:', user);
-      this.router.navigate(['/login']); 
+      let message = this.auth.addData(user);
+      if(message)
+        this.router.navigate(['/login']); 
+      else
+        alert("Not valid registration")
     }
   }
-
-
 
   passwordMatchValidator(control: FormControl): {[key:string]: boolean} | null{
     if(this.registerForm){

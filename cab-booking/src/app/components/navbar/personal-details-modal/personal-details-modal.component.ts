@@ -22,12 +22,10 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   }
 
   ngOnInit(): void {
-     console.log(this.userDetails);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
       if(changes['userDetails']){
-        console.log(this.userDetails);
         this.userForm.get('contactnumber')?.setValue(this.userDetails.contactnumber)
         this.userForm.get('emailaddress')?.setValue(this.userDetails.emailaddress)
         this.userForm.get('name')?.setValue(this.userDetails.name)
@@ -35,7 +33,7 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   }
 
   submit(){
-    this.user.setUserDetails(this.userForm.value)
+    this.user.setUserDetails(this.userForm.value)    
   }
 
   

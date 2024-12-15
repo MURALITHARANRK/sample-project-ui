@@ -15,7 +15,12 @@ export class UserService {
   }
 
   setUserDetails(userData: {name:string, emailaddress: string, contactnumber: string}){
-    
+    let customerid = localStorage.getItem('customerid');
+    let currentArray = this.auth.mockData.value;
+    let updatedArray = currentArray.map((obj:any)=>{
+      return obj.customerid == customerid ? {...obj, ...userData} : obj
+    })
+    this.auth.mockData.next(updatedArray)
   }
 
   getLocationBetweenTwoPoints(locationCoords: any){

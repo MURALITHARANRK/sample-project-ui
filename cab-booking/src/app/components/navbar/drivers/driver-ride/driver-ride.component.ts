@@ -1,24 +1,28 @@
 import { CommonModule } from '@angular/common';
 import { Component} from '@angular/core';
+import { AuthService } from '../../../../services/auth-service/auth.service';
+import { RouterModule } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-driver-ride',
   standalone:true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './driver-ride.component.html',
   styleUrl: './driver-ride.component.css'
 })
 export class DriverRideComponent {
   
   showDetails: boolean = false;
-
-  userDetails = {
-    name: 'Siva',
-    source: 'Coimbatore',
-    destination: 'Chicago',
-  };
+  userDetails:any
+  sourceUrl:any;
+  destinationUrl:any;
+  constructor(private auth: AuthService){
+    this.userDetails = this.auth.mockBookingData.value[0]
+    this.sourceUrl = "https://www.google.com/maps?q="+this.userDetails.sourceCoord
+    this.destinationUrl = "https://www.google.com/maps?q="+this.userDetails.destinationCoord
+  }
 
   getDetails() {
     this.showDetails = true;

@@ -188,11 +188,46 @@ export class AuthService {
       "registrationnumber": "JK012345",
       "brand": "Volkswagen",
       "model": "Jetta"
+    },
+    {
+      "customerid": 1111,
+      "name": "",
+      "username": "qqqq",
+      "emailaddress": "",
+      "contactnumber": "",
+      "password": "00000000",
+      "usertype": "user"
+    },
+    {
+      "id": 1222,
+      "username": "driver2",
+      "usertype": "driver",
+      "password": "00000000",
+      "registrationnumber": "",
+      "brand": "",
+      "model": ""
     }
   ]
   )
 
+  mockBookingData: BehaviorSubject<any> = new BehaviorSubject([
+    {
+      bookingid: 1,
+      userid: 1001,
+      username: 'John',
+      carid: 1021,
+      starttime: '',
+      endtime: '',
+      source: '357Q+PRP, Valliammai Nagar, Koyambedu, Chennai, Tamil Nadu 600092, India',
+      sourceCoord: '13.0700829,80.1844677',
+      destinationCoord: '12.9967724,80.2437957',
+      destination: 'Ramanujan IT City, SH 49A, OMR, Tharamani, Chennai, Tamil Nadu 600113, India'
+    }
+  ])
+
   mockData$ :Observable<any> = this.mockData.asObservable() 
+
+  mockBookingData$: Observable<any> = this.mockBookingData.asObservable()
 
   API_URL = environment.API_URL
 
@@ -208,7 +243,7 @@ export class AuthService {
   }
 
   login(){  
-    return this.mockData$
+    return this.mockData$  
   }
 
   getToken(){
@@ -219,10 +254,12 @@ export class AuthService {
     return localStorage.getItem('usertype')
   }
   
- private apiUrl='cab-booking\public\mockData.json';
- getMockData(): Observable<any> {
-  return this.http.get<any>(this.apiUrl);
-}
+  addData(newData:any) {
+    let newObject = {...newData, customerid: Math.floor(1000 + Math.random() * 9000), name: '', emailaddress: '', contactnumber: ''}
+    let newArray = [...this.mockData.value, newObject]
+    this.mockData.next(newArray)
+    return true
+  }
 }
 
 

@@ -24,17 +24,12 @@ export class LoginComponent implements OnInit {
     localStorage.clear()
   }
   
-
   onsubmit(){
 
     this.auth.login()
     .subscribe(
-      (data:any)=>{
-        console.log(data);
-        
-        let user = data.find((u:any)=>u.username === this.loginForm.value.username && u.password === this.loginForm.value.password)
-        console.log(user);
-        
+      (data:any)=>{        
+        let user = data.find((u:any)=>u.username === this.loginForm.value.username && u.password === this.loginForm.value.password)        
         if(user){
           localStorage.setItem('usertype', user.usertype)
           if(user.usertype == 'user')

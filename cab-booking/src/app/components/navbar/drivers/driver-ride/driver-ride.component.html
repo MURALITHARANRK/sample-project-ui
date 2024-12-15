@@ -5,8 +5,17 @@
   </div>
   <div *ngIf="showDetails" class="card">
     <h3>User Details</h3>
-    <p><strong>Name:</strong> {{ userDetails.name }}</p>
-    <p><strong>Source:</strong> {{ userDetails.source }}</p>
-    <p><strong>Destination:</strong> {{ userDetails.destination }}</p>
+    <p><strong>Name:</strong> {{ userDetails.username }}</p>
+    <p><strong>Source:</strong> 
+      <a [href]="sourceUrl" target="_blank" rel="noopener noreferrer"> 
+        {{ userDetails.source }}
+      </a>
+    </p>
+    <p><strong>Destination:</strong> 
+       <a [href]="destinationUrl" target="_blank" rel="noopener noreferrer"> 
+        {{ userDetails.destination }}
+       </a>
+      </p>
+
   </div>
 </div>

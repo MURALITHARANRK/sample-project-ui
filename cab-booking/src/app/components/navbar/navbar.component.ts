@@ -63,8 +63,6 @@ export class NavbarComponent implements OnInit {
         let id = localStorage.getItem('id')
         let carData = data.find((u:any)=>u.id == id)
         this.childData = carData
-        console.log(this.childData);
-        
       }
     )
   }

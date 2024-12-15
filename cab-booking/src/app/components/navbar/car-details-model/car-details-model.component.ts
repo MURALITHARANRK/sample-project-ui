@@ -22,7 +22,6 @@ export class CarDetailsModelComponent implements OnInit, OnChanges{
     }
   
     ngOnInit(): void {
-      console.log(this.carDetails);
     }
 
     ngOnChanges(changes: SimpleChanges): void {
@@ -30,7 +29,6 @@ export class CarDetailsModelComponent implements OnInit, OnChanges{
       this.carForm.get('registrationnumber')?.setValue(this.carDetails.registrationnumber)
       this.carForm.get('brand')?.setValue(this.carDetails.brand)
       this.carForm.get('model')?.setValue(this.carDetails.model)
-      console.log(this.carForm.value);
       
       }
     }

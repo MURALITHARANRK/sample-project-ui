@@ -46,7 +46,6 @@ export class UserBookingComponent {
             geocoder.geocode(
               { location: { lat: latitude, lng: longitude } },
               (results:any, status:any) => {
-                console.log(results[0].formatted_address);
                 
                 if (status === 'OK' && results.length > 0) {
                   this.locationForm.get('currentLocation')?.setValue(results[0].formatted_address)
@@ -84,11 +83,8 @@ export class UserBookingComponent {
   
     onSubmit(): void {
       this.submitted = true;
-      console.log("coords", this.locationCoords);
       this.distance = this.user.getLocationBetweenTwoPoints(this.locationCoords) as number
       this.distance = Math.round(this.distance)
-      console.log('Form Values:', this.locationForm.value);
-      console.log('Current Location:', this.currentLocation);
       this.user.setLocationDetails(this.locationCoords)
     }  
 }
