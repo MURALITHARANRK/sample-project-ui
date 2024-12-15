@@ -12,7 +12,7 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" title="details" data-toggle="modal" data-target="#pdModal">
+                    <a class="nav-link" title="details" data-toggle="modal" [attr.data-target]="modalName">
                         <i class="fas fa-user"></i>
                     </a>
                 </li>
@@ -50,6 +50,8 @@
         </div>
     </div>
     <app-personal-details-modal [userDetails]="childData" ></app-personal-details-modal>
+    <app-car-details-modal [carDetails]="childData"></app-car-details-modal>
+
 </body>
 
 

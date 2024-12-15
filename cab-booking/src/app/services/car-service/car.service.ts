@@ -1,17 +1,20 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../enviroments/environment';
+import { AuthService } from '../auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarService {
-
-  constructor() {}
+  API_URL = environment.API_URL
+  constructor(private http: HttpClient, private auth: AuthService) {}
   getcardetails(){
-    return {reg_number: '1234', availability: 'yes', brand: 'bmw' ,model:'2014'}
+    return this.auth.mockData$
   }
 
-  setcardetails(carData: {reg_number:string, availability: string,  brand: string,model:string}){
-  
+  setcardetails(carData: {registrationnumber:string, brand: string,model:string}){
+
   }
   
 }
