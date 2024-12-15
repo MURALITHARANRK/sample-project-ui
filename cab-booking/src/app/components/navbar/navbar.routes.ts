@@ -20,10 +20,6 @@ export const navbarRoutes: Routes = [
                 canActivate: [userGuard]
             },
             {
-                path:'cardetails',
-                component:CarDetailsModelComponent,
-            },
-            {
                 path: 'driver-ride',
                 loadComponent: ()=>import('./drivers/driver-ride/driver-ride.component').then(c=>c.DriverRideComponent),
                 canActivate: [driverGuard]

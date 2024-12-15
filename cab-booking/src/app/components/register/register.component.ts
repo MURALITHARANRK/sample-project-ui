@@ -13,7 +13,6 @@ import { AuthService } from '../../services/auth-service/auth.service';
 })
 export class RegisterComponent {
   registerForm: FormGroup;
-  userService: any;
 
   constructor(private fb: FormBuilder,private router:Router, private auth: AuthService) {
     this.registerForm = this.fb.group({

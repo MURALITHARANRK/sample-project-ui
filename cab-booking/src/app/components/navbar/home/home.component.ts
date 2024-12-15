@@ -10,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   x=12;
-  y=13;
+  y="Not in a ride";
   constructor(private http: HttpClient){}
   ngOnInit(): void {
 
