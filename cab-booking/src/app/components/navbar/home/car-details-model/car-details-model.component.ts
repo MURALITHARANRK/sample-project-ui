@@ -4,6 +4,7 @@ import { FormControl,FormGroup,ReactiveFormsModule,FormBuilder} from '@angular/f
 @Component({
   selector: 'app-car-details-model',
   imports: [ReactiveFormsModule],
+  standalone:true,
   templateUrl: './car-details-model.component.html',
   styleUrl: './car-details-model.component.css'
 })
@@ -31,7 +32,7 @@ export class CarDetailsModelComponent implements OnInit{
     }
   
     submit(){
-      this.auth.setcardetails(this.cardetails.value)
+      this.auth.setcardetails(this.carForm.value)
     }
   
   }

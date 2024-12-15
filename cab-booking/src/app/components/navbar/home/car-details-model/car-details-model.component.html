@@ -1,1 +1,37 @@
-<p>car-details-model works!</p>
+<div class="modal fade" id="pdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Car Details</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="carForm" (ngSubmit)="submit()" >
+            <div class="form-group">
+              <label for="reg_number">Register number</label>
+              <input type="text" class="form-control" formControlName="reg_number" id="name" placeholder="Enter Name">
+            </div>
+            <div class="form-group">
+              <label for="availability">Availability</label>
+              <input type="aAvailability" class="form-control" formControlName="availability" id="avail" placeholder="availability">
+            </div>
+            <div class="form-group">
+              <label for="brand">Brand</label>
+              <input type="text" class="form-control" formControlName="brand" id="brand" placeholder="Enter the brand">
+            </div>
+            <div class="form-group">
+                <label for="model">Model</label>
+                <input type="text" class="form-control" formControlName="brand" id="brand" placeholder="Enter the brand">
+              </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
