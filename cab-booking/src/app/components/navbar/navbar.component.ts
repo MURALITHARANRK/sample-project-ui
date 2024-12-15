@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { PersonalDetailsModalComponent } from './personal-details-modal/personal-details-modal.component';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth-service/auth.service';
+import { UserService } from '../../services/user-service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,10 +13,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-  
-  constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService){}
+  childData:any = {}
+  constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService, private user : UserService){}
 
   ngOnInit(): void {
+    this.getUserDetails()
   }
 
   logout(){
@@ -23,8 +25,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   routeToBooking(){
-    let role = localStorage.getItem('role')
-    if(role == 'user'){
+    let usertype = this.auth.getUserType()
+    if(usertype == 'user'){
       this.router.navigate(['user-booking'], {relativeTo: this.route})
     }
     else{
@@ -33,7 +35,13 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserDetails(){
-    return this.auth.getUserDetails()
+    this.user.getUserDetails().subscribe(
+      (data:any)=>{
+        let customerid = localStorage.getItem('customerid')
+        let userData = data.find((u:any)=>u.customerid == customerid)
+        this.childData = userData        
+      }
+    )
   }
 
 

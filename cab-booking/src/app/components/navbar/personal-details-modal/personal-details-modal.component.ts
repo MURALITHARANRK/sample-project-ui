@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth-service/auth.service';
+import { UserService } from '../../../services/user-service/user.service';
 
 @Component({
   selector: 'app-personal-details-modal',
@@ -9,27 +10,32 @@ import { AuthService } from '../../../services/auth.service';
   templateUrl: './personal-details-modal.component.html',
   styleUrl: './personal-details-modal.component.css'
 })
-export class PersonalDetailsModalComponent implements OnInit {
+export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   @Input() userDetails: any
   userForm:FormGroup
-  constructor(private fb: FormBuilder, private auth: AuthService){
+  constructor(private fb: FormBuilder, private auth: AuthService, private user: UserService){
     this.userForm = this.fb.group({
       name: new FormControl(''),
-      email: new FormControl(''),
-      username: new FormControl('')
+      emailaddress: new FormControl(''),
+      contactnumber: new FormControl('')
     })
   }
 
   ngOnInit(): void {
-    console.log(this.userDetails);
+     console.log(this.userDetails);
+  }
 
-      this.userForm.get('username')?.setValue(this.userDetails.username)
-      this.userForm.get('email')?.setValue(this.userDetails.email)
-      this.userForm.get('name')?.setValue(this.userDetails.name)
+  ngOnChanges(changes: SimpleChanges): void {
+      if(changes['userDetails']){
+        console.log(this.userDetails);
+        this.userForm.get('contactnumber')?.setValue(this.userDetails.contactnumber)
+        this.userForm.get('emailaddress')?.setValue(this.userDetails.emailaddress)
+        this.userForm.get('name')?.setValue(this.userDetails.name)
+      }
   }
 
   submit(){
-    this.auth.setUserDetails(this.userForm.value)
+    this.user.setUserDetails(this.userForm.value)
   }
 
 }

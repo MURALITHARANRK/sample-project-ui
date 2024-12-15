@@ -1,11 +1,12 @@
 import { HttpInterceptorFn, HttpRequest } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { AuthService } from '../services/auth.service';
+import { AuthService } from '../services/auth-service/auth.service';
 
 export const headerInterceptor: HttpInterceptorFn = (req, next) => {
 
-  const exludedUrls = ['/api/login', '/api/register', 'mockData.json']
-  let isExcluded = exludedUrls.some((url)=>{req.url.includes(url)})
+  // const exludedUrls = ['/api/login', '/api/register', 'mockData.json']
+  let isExcluded = req.url.includes('mockData.json')
+  
   if(isExcluded){
     console.log("excluded urls")
     return next(req)
@@ -17,5 +18,5 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
   })
   console.log(newReq);
   
-  return next(req);
+  return next(newReq);
 };

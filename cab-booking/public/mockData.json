@@ -1,82 +1,92 @@
 [
   {
+    "customerid": 1001,
     "name": "John",
     "username": "john",
-    "email": "johndoe@gmail.com",
-    "phone": "9876543210",
+    "emailaddress": "johndoe@gmail.com",
+    "contactnumber": "9876543210",
     "password": "password123",
-    "role": "user"
+    "usertype": "user"
   },
   {
+    "customerid": 1002,
     "name": "Jane",
     "username": "jane",
-    "email": "janesmith@gmail.com",
-    "phone": "8765432109",
+    "emailaddress": "janesmith@gmail.com",
+    "contactnumber": "8765432109",
     "password": "admin@1234",
-    "role": "driver"
+    "usertype": "driver"
   },
   {
+    "customerid": 1003,
     "name": "Mark",
     "username": "mark_johnson",
-    "email": "markjohnson@gmail.com",
-    "phone": "7654321098",
+    "emailaddress": "markjohnson@gmail.com",
+    "contactnumber": "7654321098",
     "password": "securepass1",
-    "role": "driver"
+    "usertype": "driver"
   },
   {
+    "customerid": 1004,
     "name": "Emily",
     "username": "emily_brown",
-    "email": "emilybrown@gmail.com",
-    "phone": "6543210987",
+    "emailaddress": "emilybrown@gmail.com",
+    "contactnumber": "6543210987",
     "password": "passcode987",
-    "role": "user"
+    "usertype": "user"
   },
   {
+    "customerid": 1005,
     "name": "Chris",
     "username": "chris_davis",
-    "email": "chrisdavis@gmail.com",
-    "phone": "5432109876",
+    "emailaddress": "chrisdavis@gmail.com",
+    "contactnumber": "5432109876",
     "password": "mysecurepwd",
-    "role": "admin"
+    "usertype": "admin"
   },
   {
+    "customerid": 1006,
     "name": "Sophia",
     "username": "sophia_wilson",
-    "email": "sophiawilson@gmail.com",
-    "phone": "4321098765",
+    "emailaddress": "sophiawilson@gmail.com",
+    "contactnumber": "4321098765",
     "password": "driver12345",
-    "role": "driver"
+    "usertype": "driver"
   },
   {
+    "customerid": 1007,
     "name": "James",
     "username": "james_anderson",
-    "email": "jamesanderson@gmail.com",
-    "phone": "3210987654",
+    "emailaddress": "jamesanderson@gmail.com",
+    "contactnumber": "3210987654",
     "password": "strongpass8",
-    "role": "admin"
+    "usertype": "admin"
   },
   {
+    "customerid": 1008,
     "name": "Olivia",
     "username": "olivia_thomas",
-    "email": "oliviathomas@gmail.com",
-    "phone": "2109876543",
+    "emailaddress": "oliviathomas@gmail.com",
+    "contactnumber": "2109876543",
     "password": "user!pass",
-    "role": "user"
+    "usertype": "user"
   },
   {
+    "customerid": 1009,
     "name": "Liam",
     "username": "liam_martinez",
-    "email": "liammartinez@gmail.com",
-    "phone": "1098765432",
+    "emailaddress": "liammartinez@gmail.com",
+    "contactnumber": "1098765432",
     "password": "driverPwd99",
-    "role": "driver"
+    "usertype": "driver"
   },
   {
+    "customerid": 1010,
     "name": "Ava",
     "username": "ava_moore",
-    "email": "avamoore@gmail.com",
-    "phone": "9876543211",
+    "emailaddress": "avamoore@gmail.com",
+    "contactnumber": "9876543211",
     "password": "admin_9876",
-    "role": "user"
+    "usertype": "user"
   }
 ]

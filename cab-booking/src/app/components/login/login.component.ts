@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import{FormControl,FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth-service/auth.service';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    localStorage.clear()
   }
   
 
@@ -35,7 +36,8 @@ export class LoginComponent implements OnInit {
         console.log(user);
         if(user){
           localStorage.setItem('usertype', user.usertype)
-          this.auth.setLocalStorage('bjodnglfngpoekr32')
+          localStorage.setItem('customerid', user.customerid)
+          this.auth.setLocalStorage('ldfh803457c94594ounsgtrytcj3vio58y45')
           this.router.navigate(['/navbar/home'])
         }
         else{
