@@ -2,15 +2,13 @@
 <body class="hold-transition register-page">
     <div class="register-box">
         <div class="register-logo">
-            <a href="#"><b>Admin</b>LTE</a>
+            <a href="#"><b>Cab booking</b></a>
         </div>
-        <!-- Card -->
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Register a new membership</p>
 
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <!-- Username Field -->
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Username" formControlName="username">
                         <div class="input-group-append">
@@ -20,7 +18,6 @@
                         </div>
                     </div>
 
-                    <!-- Role Field -->
                     <div class="input-group mb-3">
                         <select class="form-control" formControlName="role">
                             <option value="" disabled>Select Role</option>

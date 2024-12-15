@@ -4,6 +4,7 @@ import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-personal-details-modal',
+  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './personal-details-modal.component.html',
   styleUrl: './personal-details-modal.component.css'

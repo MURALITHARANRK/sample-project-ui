@@ -2,12 +2,11 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { navbarRoutes } from './components/navbar/navbar.routes';
-import { MapsComponent } from './components/navbar/users/maps/maps.component';
 
 export const routes: Routes = [
 
     {
-        path: 'login/:role',
+        path: 'login',
         loadComponent: ()=>import('./components/login/login.component').then(c => c.LoginComponent)
     },
     {
@@ -16,18 +15,10 @@ export const routes: Routes = [
     },
     {
         path:'',
-        redirectTo: 'role',
+        redirectTo: 'login',
         pathMatch: 'full'
     },
-    {
-        path: 'role',
-        loadComponent: ()=>import('./components/role/role.component').then(c=>c.RoleComponent)
-    },
     ...navbarRoutes,
-    {
-        path:'maps',
-        component: MapsComponent,
-    }
     
 
 ];

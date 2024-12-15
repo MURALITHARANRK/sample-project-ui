@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import { Login } from '../Interfaces/loginInterface';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
+
+  API_URL = environment.API_URL
 
   constructor(private http: HttpClient) {}
 
@@ -18,11 +20,8 @@ export class AuthService {
     return true? authToken!='' || authToken!=undefined : false
   }
 
-  login(userData:any){
-    this.http.get('https://jsonplaceholder.typicode.com/users').subscribe((data)=>{console.log(data);
-    })
-    return true;
-
+  login(){  
+    return this.http.get('http://localhost:4200/mockData.json')
   }
 
   getToken(){
@@ -35,7 +34,11 @@ export class AuthService {
 
   setUserDetails(userData: {name:string, username: string, email: string}){
     //api call
-    
   }
   
+
+  getUserType(){
+    return localStorage.getItem('usertype')
+  }
+
 }
