@@ -1,83 +1,82 @@
 [
-    {
-      "name": "John",
-      "username": "john",
-      "email": "johndoe@gmail.com",
-      "phone": "9876543210",
-      "password": "password123",
-      "role": "user"
-    },
-    {
-      "name": "Jane",
-      "username": "jane",
-      "email": "janesmith@gmail.com",
-      "phone": "8765432109",
-      "password": "admin@1234",
-      "role": "driver"
-    },
-    {
-      "name": "Mark",
-      "username": "mark_johnson",
-      "email": "markjohnson@gmail.com",
-      "phone": "7654321098",
-      "password": "securepass1",
-      "role": "driver"
-    },
-    {
-      "name": "Emily",
-      "username": "emily_brown",
-      "email": "emilybrown@gmail.com",
-      "phone": "6543210987",
-      "password": "passcode987",
-      "role": "user"
-    },
-    {
-      "name": "Chris",
-      "username": "chris_davis",
-      "email": "chrisdavis@gmail.com",
-      "phone": "5432109876",
-      "password": "mysecurepwd",
-      "role": "admin"
-    },
-    {
-      "name": "Sophia",
-      "username": "sophia_wilson",
-      "email": "sophiawilson@gmail.com",
-      "phone": "4321098765",
-      "password": "driver12345",
-      "role": "driver"
-    },
-    {
-      "name": "James",
-      "username": "james_anderson",
-      "email": "jamesanderson@gmail.com",
-      "phone": "3210987654",
-      "password": "strongpass8",
-      "role": "admin"
-    },
-    {
-      "name": "Olivia",
-      "username": "olivia_thomas",
-      "email": "oliviathomas@gmail.com",
-      "phone": "2109876543",
-      "password": "user!pass",
-      "role": "user"
-    },
-    {
-      "name": "Liam",
-      "username": "liam_martinez",
-      "email": "liammartinez@gmail.com",
-      "phone": "1098765432",
-      "password": "driverPwd99",
-      "role": "driver"
-    },
-    {
-      "name": "Ava",
-      "username": "ava_moore",
-      "email": "avamoore@gmail.com",
-      "phone": "9876543211",
-      "password": "admin_9876",
-      "role": "user"
-    }
-  ]
-  
+  {
+    "name": "John",
+    "username": "john",
+    "email": "johndoe@gmail.com",
+    "phone": "9876543210",
+    "password": "password123",
+    "role": "user"
+  },
+  {
+    "name": "Jane",
+    "username": "jane",
+    "email": "janesmith@gmail.com",
+    "phone": "8765432109",
+    "password": "admin@1234",
+    "role": "driver"
+  },
+  {
+    "name": "Mark",
+    "username": "mark_johnson",
+    "email": "markjohnson@gmail.com",
+    "phone": "7654321098",
+    "password": "securepass1",
+    "role": "driver"
+  },
+  {
+    "name": "Emily",
+    "username": "emily_brown",
+    "email": "emilybrown@gmail.com",
+    "phone": "6543210987",
+    "password": "passcode987",
+    "role": "user"
+  },
+  {
+    "name": "Chris",
+    "username": "chris_davis",
+    "email": "chrisdavis@gmail.com",
+    "phone": "5432109876",
+    "password": "mysecurepwd",
+    "role": "admin"
+  },
+  {
+    "name": "Sophia",
+    "username": "sophia_wilson",
+    "email": "sophiawilson@gmail.com",
+    "phone": "4321098765",
+    "password": "driver12345",
+    "role": "driver"
+  },
+  {
+    "name": "James",
+    "username": "james_anderson",
+    "email": "jamesanderson@gmail.com",
+    "phone": "3210987654",
+    "password": "strongpass8",
+    "role": "admin"
+  },
+  {
+    "name": "Olivia",
+    "username": "olivia_thomas",
+    "email": "oliviathomas@gmail.com",
+    "phone": "2109876543",
+    "password": "user!pass",
+    "role": "user"
+  },
+  {
+    "name": "Liam",
+    "username": "liam_martinez",
+    "email": "liammartinez@gmail.com",
+    "phone": "1098765432",
+    "password": "driverPwd99",
+    "role": "driver"
+  },
+  {
+    "name": "Ava",
+    "username": "ava_moore",
+    "email": "avamoore@gmail.com",
+    "phone": "9876543211",
+    "password": "admin_9876",
+    "role": "user"
+  }
+]
