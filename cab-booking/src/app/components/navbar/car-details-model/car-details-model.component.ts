@@ -4,6 +4,7 @@ import { FormControl,FormGroup,ReactiveFormsModule,FormBuilder} from '@angular/f
 @Component({
   selector: 'app-car-details-model',
   imports: [ReactiveFormsModule],
+  standalone:true,
   templateUrl: './car-details-model.component.html',
   styleUrl: './car-details-model.component.css'
 })
@@ -13,8 +14,7 @@ export class CarDetailsModelComponent implements OnInit{
   auth: any;
     constructor(private fb: FormBuilder){
       this.carForm = this.fb.group({
-        reg_number: new FormControl(''),
-        availability: new FormControl(''),
+        registrationnumber: new FormControl(''),
         brand: new FormControl(''),
         model: new FormControl('')
       })
@@ -23,15 +23,14 @@ export class CarDetailsModelComponent implements OnInit{
     ngOnInit(): void {
       console.log(this.cardetails);
   
-        this.carForm.get('reg_number')?.setValue(this.cardetails.reg_number)
-        this.carForm.get('availability')?.setValue(this.cardetails.availability)
+        this.carForm.get('registrationnumber')?.setValue(this.cardetails.reg_number)
         this.carForm.get('brand')?.setValue(this.cardetails.brand)
         this.carForm.get('model')?.setValue(this.cardetails.model)
 
     }
   
     submit(){
-      this.auth.setcardetails(this.cardetails.value)
+      this.auth.setcardetails(this.carForm.value)
     }
   
   }

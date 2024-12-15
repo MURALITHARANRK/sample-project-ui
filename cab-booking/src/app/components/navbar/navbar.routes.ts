@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { authGuard } from "../../guards/auth-guard/auth.guard";
 import { userGuard } from "../../guards/user-guard/user.guard";
 import { driverGuard } from "../../guards/driver-guard/driver.guard";
+import { CarDetailsModelComponent } from "./car-details-model/car-details-model.component";
 
 export const navbarRoutes: Routes = [
     {
@@ -17,6 +18,10 @@ export const navbarRoutes: Routes = [
                 path: 'user-booking',
                 loadComponent: ()=>import('./users/user-booking/user-booking.component').then(c=>c.UserBookingComponent),
                 canActivate: [userGuard]
+            },
+            {
+                path:'cardetails',
+                component:CarDetailsModelComponent,
             },
             {
                 path: 'driver-ride',

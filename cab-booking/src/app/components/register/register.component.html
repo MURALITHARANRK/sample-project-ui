@@ -7,7 +7,6 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">Register a new membership</p>
-
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
                     <div class="input-group mb-3">
                         <input type="text" class="form-control" placeholder="Username" formControlName="username">
@@ -17,6 +16,12 @@
                             </div>
                         </div>
                     </div>
+                    @if(registerForm.controls['username'].touched && registerForm.controls['username'].invalid){
+                        <div class="text-danger mb-2" id="usernameError">
+                            Username is required.
+                        </div>
+                    }
+
 
                     <div class="input-group mb-3">
                         <select class="form-control" formControlName="role">
@@ -31,18 +36,8 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Email Field -->
-                    <div class="input-group mb-3">
-                        <input type="email" class="form-control" placeholder="Email" formControlName="email">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Password Field -->
+                    
+                <!-- Password Field -->
                     <div class="input-group mb-3">
                         <input type="password" class="form-control" placeholder="Password" formControlName="password">
                         <div class="input-group-append">
@@ -51,6 +46,12 @@
                             </div>
                         </div>
                     </div>
+                    @if(registerForm.controls['password'].touched && registerForm.controls['password'].invalid){
+                        <div class="text-danger mb-2" id="usernameError">
+                            Username is required.
+                        </div>
+                    }
+
 
                     <!-- Confirm Password Field -->
                     <div class="input-group mb-3">
