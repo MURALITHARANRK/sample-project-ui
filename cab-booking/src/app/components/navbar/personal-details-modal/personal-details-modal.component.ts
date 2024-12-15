@@ -38,4 +38,6 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
     this.user.setUserDetails(this.userForm.value)
   }
 
+  
+
 }

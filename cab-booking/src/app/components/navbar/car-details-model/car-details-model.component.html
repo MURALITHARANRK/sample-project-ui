@@ -1,4 +1,4 @@
-<div class="modal fade" id="pdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="cdModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -8,7 +8,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form [formGroup]="carForm" (ngSubmit)="submit()" >
+          <form [formGroup]="carForm" (ngSubmit)="submit()">
             <div class="form-group">
               <label for="registrationnumber">Register number</label>
               <input type="text" class="form-control" formControlName="registrationnumber" id="number" placeholder="Enter Number">

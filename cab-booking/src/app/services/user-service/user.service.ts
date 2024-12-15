@@ -1,20 +1,21 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../environments/environments';
+import { environment } from '../../enviroments/environment';
+import { AuthService } from '../auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   API_URL = environment.API_URL
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private auth:AuthService) { }
 
   getUserDetails(){
-    return this.http.get(this.API_URL)
+    return this.auth.mockData$
   }
 
-  setUserDetails(userData: {name:string, username: string, email: string}){
-    //api call
+  setUserDetails(userData: {name:string, emailaddress: string, contactnumber: string}){
+    
   }
 
   getLocationBetweenTwoPoints(locationCoords: any){

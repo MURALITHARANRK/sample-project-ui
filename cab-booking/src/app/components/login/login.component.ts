@@ -34,9 +34,14 @@ export class LoginComponent implements OnInit {
         
         let user = data.find((u:any)=>u.username === this.loginForm.value.username && u.password === this.loginForm.value.password)
         console.log(user);
+        
         if(user){
           localStorage.setItem('usertype', user.usertype)
-          localStorage.setItem('customerid', user.customerid)
+          if(user.usertype == 'user')
+            localStorage.setItem('customerid', user.customerid)
+          else
+            localStorage.setItem('id', user.id)
+
           this.auth.setLocalStorage('ldfh803457c94594ounsgtrytcj3vio58y45')
           this.router.navigate(['/navbar/home'])
         }
