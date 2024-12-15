@@ -1,14 +1,16 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../../enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-
-  constructor() { }
+  API_URL = environment.API_URL
+  constructor(private http:HttpClient) { }
 
   getUserDetails(){
-    return {username: 'test1', email: 'test123@gmail.com', name: 'testcase'}
+    return this.http.get(this.API_URL)
   }
 
   setUserDetails(userData: {name:string, username: string, email: string}){

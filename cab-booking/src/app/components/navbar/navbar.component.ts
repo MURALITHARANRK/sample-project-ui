@@ -13,10 +13,11 @@ import { UserService } from '../../services/user-service/user.service';
 })
 export class NavbarComponent implements OnInit {
 
-  
+  childData:any = {}
   constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService, private user : UserService){}
 
   ngOnInit(): void {
+    this.getUserDetails()
   }
 
   logout(){
@@ -34,7 +35,13 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserDetails(){
-    return this.user.getUserDetails()
+    this.user.getUserDetails().subscribe(
+      (data:any)=>{
+        let customerid = localStorage.getItem('customerid')
+        let userData = data.find((u:any)=>u.customerid == customerid)
+        this.childData = userData        
+      }
+    )
   }
 
 

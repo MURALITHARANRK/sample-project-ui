@@ -36,6 +36,7 @@ export class LoginComponent implements OnInit {
         console.log(user);
         if(user){
           localStorage.setItem('usertype', user.usertype)
+          localStorage.setItem('customerid', user.customerid)
           this.auth.setLocalStorage('ldfh803457c94594ounsgtrytcj3vio58y45')
           this.router.navigate(['/navbar/home'])
         }
