@@ -17,7 +17,7 @@ export class AuthService {
 
   isLoggedIn(){
     let authToken = localStorage.getItem('token')
-    return true? authToken!='' || authToken!=undefined : false
+    return true? authToken!='' && authToken!=undefined : false
   }
 
   login(){  

@@ -23,8 +23,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['/login'])
   }
   routeToBooking(){
-    let role = localStorage.getItem('role')
-    if(role == 'user'){
+    let usertype = this.auth.getUserType()
+    if(usertype == 'user'){
       this.router.navigate(['user-booking'], {relativeTo: this.route})
     }
     else{
