@@ -35,6 +35,7 @@ export class AuthService {
   setUserDetails(userData: {name:string, username: string, email: string}){
     //api call
   }
+  
 
   getUserType(){
     return localStorage.getItem('usertype')
