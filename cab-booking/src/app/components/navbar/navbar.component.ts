@@ -13,11 +13,13 @@ import { UserService } from '../../services/user-service/user.service';
 })
 export class NavbarComponent implements OnInit {
 
+  modalName:any = "#pdModal"
   childData:any = {}
   constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService, private user : UserService){}
 
   ngOnInit(): void {
-    this.getUserDetails()
+    if(localStorage.getItem('usertype')=='user')
+      this.getUserDetails()
   }
 
   logout(){
