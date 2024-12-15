@@ -9,8 +9,8 @@
             <div class="card-body login-card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="#" method="post" [formGroup]="form">
-                    <div class="input-group mb-3">
+                <form [formGroup]="loginForm">
+                    <div class="input-group mb-2">
                         <input type="text" class="form-control" formControlName="username" placeholder="Username" name="username">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -18,10 +18,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-danger mb-2" style="display: none;" id="usernameError">
+                    @if(loginForm.controls.username.touched && loginForm.controls.username.invalid){
+                    <div class="text-danger mb-2" id="usernameError">
                         Username is required.
                     </div>
-                    <div class="input-group mb-3">
+                    }
+                    <div class="input-group mb-2">
                         <input type="password" class="form-control" formControlName="password" placeholder="Password" name="password">
                         <div class="input-group-append">
                             <div class="input-group-text">
@@ -29,10 +31,15 @@
                             </div>
                         </div>
                     </div>
+                    @if(loginForm.controls.password.touched && loginForm.controls.password.invalid){
+                        <div class="text-danger mb-2" id="passwordError">
+                            Password is required.
+                        </div>
+                    }
                     <div class="row">
 
                         <div class="col-4">
-                            <button [disabled]="form.invalid" type="submit" (click)="onsubmit()" class="btn btn-primary btn-block">Sign In</button>
+                            <button [disabled]="loginForm.invalid" type="submit" (click)="onsubmit()" class="btn btn-primary btn-block">Sign In</button>
                         </div>
                     </div>
                 </form>

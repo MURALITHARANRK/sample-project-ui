@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [RouterModule, ReactiveFormsModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -16,7 +17,7 @@ export class RegisterComponent {
       username: ['', Validators.required],
       role: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
       confirmPassword: ['', [Validators.required, this.passwordMatchValidator.bind(this)]]
     });
   }

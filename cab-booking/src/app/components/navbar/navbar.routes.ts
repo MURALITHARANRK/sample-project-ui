@@ -1,5 +1,7 @@
 import { Routes } from "@angular/router";
-import { authGuard } from "../../guards/auth.guard";
+import { authGuard } from "../../guards/auth-guard/auth.guard";
+import { userGuard } from "../../guards/user-guard/user.guard";
+import { driverGuard } from "../../guards/driver-guard/driver.guard";
 
 export const navbarRoutes: Routes = [
     {
@@ -13,11 +15,13 @@ export const navbarRoutes: Routes = [
             },
             {
                 path: 'user-booking',
-                loadComponent: ()=>import('./users/user-booking/user-booking.component').then(c=>c.UserBookingComponent)
+                loadComponent: ()=>import('./users/user-booking/user-booking.component').then(c=>c.UserBookingComponent),
+                canActivate: [userGuard]
             },
             {
                 path: 'driver-ride',
-                loadComponent: ()=>import('./drivers/driver-ride/driver-ride.component').then(c=>c.DriverRideComponent)
+                loadComponent: ()=>import('./drivers/driver-ride/driver-ride.component').then(c=>c.DriverRideComponent),
+                canActivate: [driverGuard]
             }
         ]
     }

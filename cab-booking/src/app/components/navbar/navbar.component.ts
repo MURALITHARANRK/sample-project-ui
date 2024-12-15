@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     localStorage.clear()
-    this.router.navigate(['/role'])
+    this.router.navigate(['/login'])
   }
   routeToBooking(){
     let role = localStorage.getItem('role')
