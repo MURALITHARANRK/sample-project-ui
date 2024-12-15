@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { navbarRoutes } from './components/navbar/navbar.routes';
-import { CarDetailsModelComponent } from './components/navbar/home/car-details-model/car-details-model.component';
+import { CarDetailsModelComponent } from './components/navbar/car-details-model/car-details-model.component';
 
 export const routes: Routes = [
 

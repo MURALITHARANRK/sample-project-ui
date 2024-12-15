@@ -14,8 +14,7 @@ export class CarDetailsModelComponent implements OnInit{
   auth: any;
     constructor(private fb: FormBuilder){
       this.carForm = this.fb.group({
-        reg_number: new FormControl(''),
-        availability: new FormControl(''),
+        registrationnumber: new FormControl(''),
         brand: new FormControl(''),
         model: new FormControl('')
       })
@@ -24,8 +23,7 @@ export class CarDetailsModelComponent implements OnInit{
     ngOnInit(): void {
       console.log(this.cardetails);
   
-        this.carForm.get('reg_number')?.setValue(this.cardetails.reg_number)
-        this.carForm.get('availability')?.setValue(this.cardetails.availability)
+        this.carForm.get('registrationnumber')?.setValue(this.cardetails.reg_number)
         this.carForm.get('brand')?.setValue(this.cardetails.brand)
         this.carForm.get('model')?.setValue(this.cardetails.model)
 

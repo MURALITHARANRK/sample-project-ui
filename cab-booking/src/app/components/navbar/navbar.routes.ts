@@ -2,7 +2,7 @@ import { Routes } from "@angular/router";
 import { authGuard } from "../../guards/auth-guard/auth.guard";
 import { userGuard } from "../../guards/user-guard/user.guard";
 import { driverGuard } from "../../guards/driver-guard/driver.guard";
-import { CarDetailsModelComponent } from "./home/car-details-model/car-details-model.component";
+import { CarDetailsModelComponent } from "./car-details-model/car-details-model.component";
 
 export const navbarRoutes: Routes = [
     {
