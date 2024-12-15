@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule, RouterOutlet } from '@angular/router';
 import { PersonalDetailsModalComponent } from './personal-details-modal/personal-details-modal.component';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../services/auth-service/auth.service';
+import { UserService } from '../../services/user-service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +14,7 @@ import { AuthService } from '../../services/auth.service';
 export class NavbarComponent implements OnInit {
 
   
-  constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService){}
+  constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService, private user : UserService){}
 
   ngOnInit(): void {
   }
@@ -33,7 +34,7 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserDetails(){
-    return this.auth.getUserDetails()
+    return this.user.getUserDetails()
   }
 
 

@@ -2,6 +2,7 @@ import { Component, NgZone } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { UserService } from '../../../../services/user-service/user.service';
 
 @Component({
   selector: 'app-user-booking',
@@ -16,8 +17,9 @@ export class UserBookingComponent {
     currentLocation: string = '';
     submitted = false;
     locationCoords: any = {currentLat: '', currentLng: '',destinationLat: '', destinationLng: ''}
+    distance:any = 0
   
-    constructor(private fb: FormBuilder) {
+    constructor(private fb: FormBuilder, private user: UserService) {
       this.locationForm = this.fb.group({
         currentLocation: [''],
         destination: ['', Validators.required]
@@ -39,7 +41,7 @@ export class UserBookingComponent {
             const latitude = position.coords.latitude;
             const longitude = position.coords.longitude;
             this.locationCoords.currentLat = latitude;
-            this.locationCoords.currentLng = latitude;
+            this.locationCoords.currentLng = longitude;
             const geocoder = new google.maps.Geocoder();
             geocoder.geocode(
               { location: { lat: latitude, lng: longitude } },
@@ -72,16 +74,21 @@ export class UserBookingComponent {
       autocomplete.addListener('place_changed', () => {
         const place = autocomplete.getPlace();
         if (place && place.formatted_address) {
+          
           this.locationForm.patchValue({ destination: place.formatted_address });
-          this.locationCoords.destinationLat = place;
-          this.locationCoords.destinationLng = place;
+          this.locationCoords.destinationLat = place.geometry?.location?.lat();
+          this.locationCoords.destinationLng = place.geometry?.location?.lng();
         }
       });
     }
   
     onSubmit(): void {
       this.submitted = true;
+      console.log("coords", this.locationCoords);
+      this.distance = this.user.getLocationBetweenTwoPoints(this.locationCoords) as number
+      this.distance = Math.round(this.distance)
       console.log('Form Values:', this.locationForm.value);
       console.log('Current Location:', this.currentLocation);
+      this.user.setLocationDetails(this.locationCoords)
     }  
 }

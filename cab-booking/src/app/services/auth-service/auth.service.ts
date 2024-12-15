@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../enviroments/environment';
+import { environment } from '../../enviroments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -27,15 +27,6 @@ export class AuthService {
   getToken(){
     return localStorage.getItem('token')
   }
-
-  getUserDetails(){
-    return {username: 'test1', email: 'test123@gmail.com', name: 'testcase'}
-  }
-
-  setUserDetails(userData: {name:string, username: string, email: string}){
-    //api call
-  }
-  
 
   getUserType(){
     return localStorage.getItem('usertype')

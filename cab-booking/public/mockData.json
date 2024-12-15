@@ -5,7 +5,7 @@
     "email": "johndoe@gmail.com",
     "phone": "9876543210",
     "password": "password123",
-    "role": "user"
+    "usertype": "user"
   },
   {
     "name": "Jane",
@@ -13,7 +13,7 @@
     "email": "janesmith@gmail.com",
     "phone": "8765432109",
     "password": "admin@1234",
-    "role": "driver"
+    "usertype": "driver"
   },
   {
     "name": "Mark",
@@ -21,7 +21,7 @@
     "email": "markjohnson@gmail.com",
     "phone": "7654321098",
     "password": "securepass1",
-    "role": "driver"
+    "usertype": "driver"
   },
   {
     "name": "Emily",
@@ -29,7 +29,7 @@
     "email": "emilybrown@gmail.com",
     "phone": "6543210987",
     "password": "passcode987",
-    "role": "user"
+    "usertype": "user"
   },
   {
     "name": "Chris",
@@ -37,7 +37,7 @@
     "email": "chrisdavis@gmail.com",
     "phone": "5432109876",
     "password": "mysecurepwd",
-    "role": "admin"
+    "usertype": "admin"
   },
   {
     "name": "Sophia",
@@ -45,7 +45,7 @@
     "email": "sophiawilson@gmail.com",
     "phone": "4321098765",
     "password": "driver12345",
-    "role": "driver"
+    "usertype": "driver"
   },
   {
     "name": "James",
@@ -53,7 +53,7 @@
     "email": "jamesanderson@gmail.com",
     "phone": "3210987654",
     "password": "strongpass8",
-    "role": "admin"
+    "usertype": "admin"
   },
   {
     "name": "Olivia",
@@ -61,7 +61,7 @@
     "email": "oliviathomas@gmail.com",
     "phone": "2109876543",
     "password": "user!pass",
-    "role": "user"
+    "usertype": "user"
   },
   {
     "name": "Liam",
@@ -69,7 +69,7 @@
     "email": "liammartinez@gmail.com",
     "phone": "1098765432",
     "password": "driverPwd99",
-    "role": "driver"
+    "usertype": "driver"
   },
   {
     "name": "Ava",
@@ -77,6 +77,6 @@
     "email": "avamoore@gmail.com",
     "phone": "9876543211",
     "password": "admin_9876",
-    "role": "user"
+    "usertype": "user"
   }
 ]

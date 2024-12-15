@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../../../services/auth.service';
+import { AuthService } from '../../../services/auth-service/auth.service';
+import { UserService } from '../../../services/user-service/user.service';
 
 @Component({
   selector: 'app-personal-details-modal',
@@ -12,7 +13,7 @@ import { AuthService } from '../../../services/auth.service';
 export class PersonalDetailsModalComponent implements OnInit {
   @Input() userDetails: any
   userForm:FormGroup
-  constructor(private fb: FormBuilder, private auth: AuthService){
+  constructor(private fb: FormBuilder, private auth: AuthService, private user: UserService){
     this.userForm = this.fb.group({
       name: new FormControl(''),
       email: new FormControl(''),
@@ -29,7 +30,7 @@ export class PersonalDetailsModalComponent implements OnInit {
   }
 
   submit(){
-    this.auth.setUserDetails(this.userForm.value)
+    this.user.setUserDetails(this.userForm.value)
   }
 
 }
