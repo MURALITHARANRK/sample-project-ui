@@ -48,11 +48,11 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserDetails(){
-    this.user.getUserDetails().subscribe(
+    // let id = localStorage.getItem("id")
+    let id = 1
+    this.user.getUserDetails(id).subscribe(
       (data:any)=>{
-        let customerid = localStorage.getItem('customerid')
-        let userData = data.find((u:any)=>u.customerid == customerid)
-        this.childData = userData        
+        this.childData = data        
       }
     )
   }

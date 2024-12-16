@@ -242,8 +242,9 @@ export class AuthService {
     return true? authToken!='' && authToken!=undefined : false
   }
 
-  login(){  
-    return this.mockData$  
+  login(userData:any){  
+    // return this.mockData$  
+    return this.http.post(this.API_URL+'register/login', userData)
   }
 
   getToken(){
@@ -255,10 +256,11 @@ export class AuthService {
   }
   
   addData(newData:any) {
-    let newObject = {...newData, customerid: Math.floor(1000 + Math.random() * 9000), name: '', emailaddress: '', contactnumber: ''}
-    let newArray = [...this.mockData.value, newObject]
-    this.mockData.next(newArray)
-    return true
+    // let newObject = {...newData, customerid: Math.floor(1000 + Math.random() * 9000), name: '', emailaddress: '', contactnumber: ''}
+    // let newArray = [...this.mockData.value, newObject]
+    // this.mockData.next(newArray)
+
+    return this.http.post(this.API_URL+'register/create', newData)
   }
 }
 

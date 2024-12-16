@@ -10,8 +10,9 @@ export class UserService {
   API_URL = environment.API_URL
   constructor(private http:HttpClient, private auth:AuthService) { }
 
-  getUserDetails(){
-    return this.auth.mockData$
+  getUserDetails(id:any){
+    // return this.auth.mockData$
+    return this.http.get(this.API_URL+'user/'+id as string)
   }
 
   setUserDetails(userData: {name:string, emailaddress: string, contactnumber: string}){

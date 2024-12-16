@@ -26,13 +26,21 @@ export class RegisterComponent {
   }
 
   onSubmit(): void {
-    if (this.registerForm.valid) {
+    if (this.registerForm.valid) 
+    {
       const user = this.registerForm.value; 
-      let message = this.auth.addData(user);
-      if(message)
-        this.router.navigate(['/login']); 
-      else
-        alert("Not valid registration")
+      this.auth.addData(user).subscribe(
+        (data:any)=>{
+          if(data.status == 409){
+            alert("user already exists")
+          }
+          else{
+            alert("Registration Sucessful")
+            this.router.navigate(['/login'])
+          }
+            
+        }
+      )
     }
   }
 

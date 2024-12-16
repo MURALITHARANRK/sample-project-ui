@@ -2,6 +2,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import { Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { UserService } from '../../../services/user-service/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-personal-details-modal',
@@ -13,7 +14,7 @@ import { UserService } from '../../../services/user-service/user.service';
 export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   @Input() userDetails: any
   userForm:FormGroup
-  constructor(private fb: FormBuilder, private auth: AuthService, private user: UserService){
+  constructor(private fb: FormBuilder, private user: UserService){
     this.userForm = this.fb.group({
       name: new FormControl(''),
       emailaddress: new FormControl(''),
@@ -33,7 +34,7 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   }
 
   submit(){
-    this.user.setUserDetails(this.userForm.value)    
+    this.user.setUserDetails(this.userForm.value)   
   }
 
   

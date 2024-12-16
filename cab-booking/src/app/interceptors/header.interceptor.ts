@@ -5,7 +5,7 @@ import { AuthService } from '../services/auth-service/auth.service';
 export const headerInterceptor: HttpInterceptorFn = (req, next) => {
 
   const exludedUrls = ['/api/login', '/api/register', 'mockData.json']
-  let isExcluded = req.url.includes('mockData.json')
+  let isExcluded = req.url.includes('/api/login')
   
   if(isExcluded){
     console.log("excluded urls")
@@ -17,5 +17,5 @@ export const headerInterceptor: HttpInterceptorFn = (req, next) => {
     headers: req.headers.set('X-token', token)
   })
   
-  return next(newReq);
+  return next(req);
 };
