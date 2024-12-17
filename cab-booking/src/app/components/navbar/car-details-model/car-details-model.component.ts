@@ -1,6 +1,8 @@
 import { Component,Input,OnChanges,OnInit, SimpleChanges } from '@angular/core';
 import { FormControl,FormGroup,ReactiveFormsModule,FormBuilder} from '@angular/forms';
 import { CarService } from '../../../services/car-service/car.service';
+import { AdminService } from '../../../services/admin-service/admin.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-car-details-modal',
@@ -13,8 +15,9 @@ export class CarDetailsModelComponent implements OnInit, OnChanges{
    @Input() carDetails: any
     carForm:FormGroup
 
-    constructor(private fb: FormBuilder, private car: CarService){
+    constructor(private fb: FormBuilder, private admin: AdminService, private active: ActivatedRoute){
       this.carForm = this.fb.group({
+        id: [this.active.snapshot.paramMap.get('id')],
         registrationnumber: new FormControl(''),
         brand: new FormControl(''),
         model: new FormControl('')
@@ -22,19 +25,17 @@ export class CarDetailsModelComponent implements OnInit, OnChanges{
     }
   
     ngOnInit(): void {
+      console.log(this.carForm.value);
     }
 
     ngOnChanges(changes: SimpleChanges): void {
-      if(changes['carDetails']){
-      this.carForm.get('registrationnumber')?.setValue(this.carDetails.registrationnumber)
-      this.carForm.get('brand')?.setValue(this.carDetails.brand)
-      this.carForm.get('model')?.setValue(this.carDetails.model)
-      
-      }
     }
   
     submit(){
-      this.car.setCarDetails(this.carForm.value)
+      console.log(this.carForm.value);
+      this.admin.setCarDetails(this.carForm.value)
+      this.carForm.reset()
+      this.carForm.get('id')?.setValue(this.active.snapshot.paramMap.get('id'))
     }
   
   }

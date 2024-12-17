@@ -6,27 +6,25 @@
             <!-- Card Container -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Driver details</h3>
+                <h3 class="card-title">User details</h3>
               </div>
               <!-- Table Content -->
               <div class="card-body">
                 <table class="table table-bordered table-hover text-center">
                   <thead>
                     <tr>
-                      <th>registration number</th>
-                      <th>model</th>
-                      <th>brand</th>
-
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Contact Number</th>
+                      <th>Email</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let car of a">
-                      <td>{{ car.registration_number }}</td>
-                      <td>{{ car.model }}</td>
-                      <td>{{ car.brand }}</td>
-                      <td>
-                        <a href="View">View</a>
-                      </td>
+                    <tr *ngFor="let user of userDetails | async">
+                      <td>{{ user.customerid }}</td>
+                      <td>{{ user.name }}</td> 
+                      <td>{{ user.contactnumber }}</td> 
+                      <td>{{ user.emailaddress }}</td> 
                     </tr>
                   </tbody>
                 </table>
@@ -38,4 +36,3 @@
     </section>
   </div>
   
-

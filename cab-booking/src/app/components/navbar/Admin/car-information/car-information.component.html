@@ -1,0 +1,41 @@
+<div class="content-wrapper">
+  <section class="content">
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <!-- Add Car Button -->
+          <div class="d-flex justify-content-end mb-3">
+            <button data-toggle="modal" data-target="#cdModal" class="btn btn-primary">Add Car</button>
+          </div>
+          <!-- Card Container -->
+          <div class="card card-primary">
+            <div class="card-header">
+              <h3 class="card-title">Driver Details</h3>
+            </div>
+            <!-- Table Content -->
+            <div class="card-body">
+              <table class="table table-bordered table-hover text-center">
+                <thead>
+                  <tr>
+                    <th>Registration Number</th>
+                    <th>Brand</th>
+                    <th>Model</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let car of carDetails">
+                    <td>{{ car.registrationnumber }}</td>
+                    <td>{{ car.brand }}</td>
+                    <td>{{ car.model }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+  <app-car-details-modal [carDetails]="childData"></app-car-details-modal>

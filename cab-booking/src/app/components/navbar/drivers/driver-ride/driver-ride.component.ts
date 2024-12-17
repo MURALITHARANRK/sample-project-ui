@@ -18,6 +18,7 @@ export class DriverRideComponent {
   userDetails:any
   sourceUrl:any;
   destinationUrl:any;
+  selectedUser:any;
   constructor(private auth: AuthService){
     this.userDetails = this.auth.mockBookingData.value[0]
     this.sourceUrl = "https://www.google.com/maps?q="+this.userDetails.sourceCoord
@@ -26,6 +27,15 @@ export class DriverRideComponent {
 
   getDetails() {
     this.showDetails = true;
+  }
+
+  viewDetails(id:any){
+    this.auth.mockData$.subscribe(
+      (data)=>{
+        let user = data.find((u:any)=>u.customerid==id)
+        this.selectedUser = user
+      }
+    )
   }
 }
   

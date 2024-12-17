@@ -32,14 +32,5 @@ export class CarService {
   getCarData(){
     return this.mockCarData
   }
-
-  setCarDetails(carData: {registrationnumber:string, brand: string,model:string}){
-    let id = localStorage.getItem('id');
-    let currentArray = this.auth.mockData.value;
-    let updatedArray = currentArray.map((obj:any)=>{
-      return obj.id == id ? {...obj, ...carData} : obj
-    })
-    this.auth.mockData.next(updatedArray)
-  }
   
 }

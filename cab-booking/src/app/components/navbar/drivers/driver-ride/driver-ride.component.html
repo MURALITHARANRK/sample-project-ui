@@ -1,21 +1,47 @@
 <div class="container">
-  <button class="refresh-btn" (click)="getDetails()">Refresh</button>
+  <button class="refresh-btn btn btn-primary mb-3" (click)="getDetails()">Refresh</button>
+
   <div *ngIf="!showDetails" class="message">
     Waiting for the details...
   </div>
-  <div *ngIf="showDetails" class="card">
-    <h3>User Details</h3>
-    <p><strong>Name:</strong> {{ userDetails.username }}</p>
-    <p><strong>Source:</strong> 
-      <a [href]="sourceUrl" target="_blank" rel="noopener noreferrer"> 
-        {{ userDetails.source }}
-      </a>
-    </p>
-    <p><strong>Destination:</strong> 
-       <a [href]="destinationUrl" target="_blank" rel="noopener noreferrer"> 
-        {{ userDetails.destination }}
-       </a>
-      </p>
 
+  <div *ngIf="showDetails">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Source</th>
+          <th>Destination</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{ userDetails.bookingid }}</td>
+          <td>
+            <a [href]="userDetails.sourceUrl" target="_blank" rel="noopener noreferrer">
+              {{ userDetails.source }}
+            </a>
+          </td>
+          <td>
+            <a [href]="userDetails.destinationUrl" target="_blank" rel="noopener noreferrer">
+              {{ userDetails.destination }}
+            </a>
+          </td>
+          <td>
+            <button class="btn btn-info btn-sm" (click)="viewDetails(userDetails.userid)">View Details</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="selectedUser" class="card mt-3">
+      <div class="card-body">
+        <h3>User Details</h3>
+        <p><strong>Name:</strong> {{ selectedUser.username }}</p>
+        <p><strong>Contact No:</strong> {{ selectedUser.contactnumber }}</p>
+        <p><strong>Email:</strong> {{ selectedUser.emailaddress }}</p>
+      </div>
+    </div>
   </div>
 </div>

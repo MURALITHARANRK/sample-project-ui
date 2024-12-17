@@ -214,7 +214,6 @@ export class AuthService {
     {
       bookingid: 1,
       userid: 1001,
-      username: 'John',
       carid: 1021,
       starttime: '',
       endtime: '',

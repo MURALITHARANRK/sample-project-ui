@@ -9,7 +9,7 @@ import { CarService } from '../../services/car-service/car.service';
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterOutlet, RouterModule, PersonalDetailsModalComponent, CarDetailsModelComponent],
+  imports: [RouterOutlet, RouterModule, PersonalDetailsModalComponent],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
@@ -18,11 +18,12 @@ export class NavbarComponent implements OnInit {
   modalName:any = ''
   childData:any = {}
   constructor(private router: Router, private route: ActivatedRoute, private auth: AuthService, private user : UserService, private car: CarService){}
-
+  userType:any
   ngOnInit(): void {
     if(localStorage.getItem('usertype')=='user'){
       this.getUserDetails()
       this.modalName = "#pdModal"
+      this.userType = this.auth.getUserType()
     }
 
     else{

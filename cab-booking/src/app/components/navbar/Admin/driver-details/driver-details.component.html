@@ -19,11 +19,11 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let driver of a">
+                    <tr *ngFor="let driver of driverDetails">
                       <td>{{ driver.id }}</td>
                       <td>{{ driver.username }}</td>
                       <td>
-                        <a href="View">View</a>
+                        <a [routerLink]="['../car-information', driver.id]">View</a>
                       </td>
                     </tr>
                   </tbody>
