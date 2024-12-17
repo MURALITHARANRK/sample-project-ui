@@ -28,8 +28,8 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(this.loginForm.value)
     .subscribe(
-      (dat:any)=>{                  
-            let data = dat.find((u:any)=>u.username == this.loginForm.value.username && this.loginForm.value.password)
+      (data:any)=>{                  
+            // let data = dat.find((u:any)=>u.username == this.loginForm.value.username && this.loginForm.value.password)
             localStorage.setItem('usertype', data.userType)
             if(data.usertype == 'user'){
               localStorage.setItem('customerid', data.id)

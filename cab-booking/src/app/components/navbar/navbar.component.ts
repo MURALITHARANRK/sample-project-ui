@@ -52,13 +52,16 @@ export class NavbarComponent implements OnInit {
     let id = 1
     this.user.getUserDetails(id).subscribe(
       (data:any)=>{
-        this.childData = data        
+        this.childData = data       
+
+      }, 
+      (error:any)=>{console.log(error);
       }
     )
   }
 
   getCarDetails(){
-    this.car.getcardetails().subscribe(
+    this.car.getCarDetails().subscribe(
       (data:any)=>{
         let id = localStorage.getItem('id')
         let carData = data.find((u:any)=>u.id == id)
