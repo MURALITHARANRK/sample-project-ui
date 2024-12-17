@@ -34,7 +34,7 @@ export class CarDetailsModelComponent implements OnInit, OnChanges{
     }
   
     submit(){
-      this.car.setcardetails(this.carForm.value)
+      this.car.setCarDetails(this.carForm.value)
     }
   
   }

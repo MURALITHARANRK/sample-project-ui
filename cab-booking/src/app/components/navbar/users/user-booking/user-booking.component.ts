@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../../services/user-service/user.service';
+import { CarService } from '../../../../services/car-service/car.service';
 
 @Component({
   selector: 'app-user-booking',
@@ -18,16 +19,30 @@ export class UserBookingComponent {
     submitted = false;
     locationCoords: any = {currentLat: '', currentLng: '',destinationLat: '', destinationLng: ''}
     distance:any = 0
-  
-    constructor(private fb: FormBuilder, private user: UserService) {
+    showCarTypes: any;
+    carData:any
+    constructor(private fb: FormBuilder, private user: UserService, private car: CarService) {
       this.locationForm = this.fb.group({
         currentLocation: [''],
-        destination: ['', Validators.required]
+        destination: ['', Validators.required],
+        carType: [''],
       });
     }
+
+    getCarData(){
+      this.car.getCarData().subscribe(
+        (data)=>{this.carData = data}
+      )
+    }
   
+    onFindDriver() {
+      if (this.locationForm.valid) {
+        this.showCarTypes = true;
+      }
+    }
     ngOnInit(): void {
       this.getUserLocation();
+      this.getCarData()
     }
   
     ngAfterViewInit(): void {
