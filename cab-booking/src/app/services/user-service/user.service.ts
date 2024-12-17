@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from '../../enviroments/environment';
+import { environment } from '../../environments/environments';
 import { AuthService } from '../auth-service/auth.service';
 
 @Injectable({

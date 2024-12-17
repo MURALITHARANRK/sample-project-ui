@@ -1,0 +1,41 @@
+<div class="content-wrapper">
+    <section class="content">
+      <div class="container mt-5">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+            <!-- Card Container -->
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Driver details</h3>
+              </div>
+              <!-- Table Content -->
+              <div class="card-body">
+                <table class="table table-bordered table-hover text-center">
+                  <thead>
+                    <tr>
+                      <th>registration number</th>
+                      <th>model</th>
+                      <th>brand</th>
+
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let car of a">
+                      <td>{{ car.registration_number }}</td>
+                      <td>{{ car.model }}</td>
+                      <td>{{ car.brand }}</td>
+                      <td>
+                        <a href="View">View</a>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+

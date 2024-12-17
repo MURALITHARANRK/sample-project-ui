@@ -1,0 +1,15 @@
+.content-wrapper {
+    background-color: #f4f6f9; 
+    min-height: 100vh;
+  }
+  
+  .card {
+    margin: auto;
+    margin-left: -250px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+  }
+  
+  table {
+    margin: 0 auto;
+  }
