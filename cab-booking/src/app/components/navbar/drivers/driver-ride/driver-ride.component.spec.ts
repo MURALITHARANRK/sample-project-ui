@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DriverRideComponent } from './driver-ride.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('DriverRideComponent', () => {
   let component: DriverRideComponent;
@@ -8,7 +9,9 @@ describe('DriverRideComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DriverRideComponent]
+      imports: [DriverRideComponent],
+      providers: [provideHttpClient()]
+
     })
     .compileComponents();
 

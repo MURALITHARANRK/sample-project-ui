@@ -8,7 +8,7 @@ import { CarService } from '../../../../services/car-service/car.service';
 @Component({
   selector: 'app-user-booking',
   standalone: true,
-  imports: [CommonModule, GoogleMapsModule, ReactiveFormsModule],
+  imports: [CommonModule, GoogleMapsModule,GoogleMap, ReactiveFormsModule],
   templateUrl: './user-booking.component.html',
   styleUrl: './user-booking.component.css'
 })

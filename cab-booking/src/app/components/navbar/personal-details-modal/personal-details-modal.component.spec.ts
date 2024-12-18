@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PersonalDetailsModalComponent } from './personal-details-modal.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('PersonalDetailsModalComponent', () => {
   let component: PersonalDetailsModalComponent;
@@ -8,7 +9,8 @@ describe('PersonalDetailsModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PersonalDetailsModalComponent]
+      imports: [PersonalDetailsModalComponent],
+      providers: [provideHttpClient()]
     })
     .compileComponents();
 
