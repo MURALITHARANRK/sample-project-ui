@@ -1,6 +1,5 @@
 import { Component, NgModule } from '@angular/core';
 import { OnInit } from '@angular/core';
-import { DriverDetailsService } from '../../../../services/driver-details-service/driver-details.service';
 import { CommonModule} from '@angular/common';
 import { AdminService } from '../../../../services/admin-service/admin.service';
 import { RouterModule } from '@angular/router';

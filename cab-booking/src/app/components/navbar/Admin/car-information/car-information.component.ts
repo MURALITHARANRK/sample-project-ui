@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { CarInformationService } from '../../../../services/car-information-service/car-information.service';
 import { CommonModule } from '@angular/common';
 import { AdminService } from '../../../../services/admin-service/admin.service';
 import { ActivatedRoute } from '@angular/router';
