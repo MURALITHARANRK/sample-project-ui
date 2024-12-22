@@ -12,16 +12,19 @@ export class UserService {
 
   getUserDetails(id:any){
     // return this.auth.mockData$
-    return this.http.get(this.API_URL+'user/'+id as string)
+    // return this.http.get(this.API_URL+'user/'+id as string)
+    let username = localStorage.getItem('username')
+    return this.http.get(this.API_URL+'user/'+username)
   }
 
   setUserDetails(userData: {name:string, emailaddress: string, contactnumber: string}){
-    let customerid = localStorage.getItem('customerid');
-    let currentArray = this.auth.mockData.value;
-    let updatedArray = currentArray.map((obj:any)=>{
-      return obj.customerid == customerid ? {...obj, ...userData} : obj
-    })
-    this.auth.mockData.next(updatedArray)
+    // let customerid = localStorage.getItem('customerid');
+    // let currentArray = this.auth.mockData.value;
+    // let updatedArray = currentArray.map((obj:any)=>{
+    //   return obj.customerid == customerid ? {...obj, ...userData} : obj
+    // })
+    // this.auth.mockData.next(updatedArray)
+    return this.http.post(this.API_URL+'user/create',userData)
   }
 
   getLocationBetweenTwoPoints(locationCoords: any){
@@ -47,8 +50,8 @@ export class UserService {
     return rad * c;
   }
 
-  setLocationDetails(locationCoords:any){
-    //api call
+  setBookingDetails(bookingDetails:any){
+    return this.http.post(this.API_URL+'user/booking',bookingDetails)
   }
   
 

@@ -16,22 +16,28 @@
         </tr>
       </thead>
       <tbody>
+        @for(booking of bookingDetails; track index){
         <tr>
-          <td>{{ userDetails.bookingid }}</td>
+          <td>{{ booking.bookingid }}</td>
           <td>
-            <a [href]="userDetails.sourceUrl" target="_blank" rel="noopener noreferrer">
-              {{ userDetails.source }}
+            <a [href]="findLocationUrl(booking.latitude)" target="_blank" rel="noopener noreferrer"> /
+              <!-- change later -->
+                click here for User Location
+              <!-- {{ findAddress(booking.latitude) }} -->
             </a>
           </td>
           <td>
-            <a [href]="userDetails.destinationUrl" target="_blank" rel="noopener noreferrer">
-              {{ userDetails.destination }}
+            <a [href]="findLocationUrl(booking.longitude)" target="_blank" rel="noopener noreferrer">
+              <!-- change later -->
+                click here for User Destination
+              <!-- {{ findAddress(booking.longitude) }} -->
             </a>
           </td>
           <td>
-            <button class="btn btn-info btn-sm" (click)="viewDetails(userDetails.userid)">View Details</button>
+            <button class="btn btn-info btn-sm" (click)="viewDetails(bookingDetails.userid)">View Details</button>
           </td>
         </tr>
+      }
       </tbody>
     </table>
 

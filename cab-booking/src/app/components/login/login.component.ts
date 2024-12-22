@@ -27,25 +27,19 @@ export class LoginComponent implements OnInit {
   onsubmit(){
 
     this.auth.login(this.loginForm.value)
-    .subscribe(
-      (data:any)=>{                  
+    .subscribe({
+      next: (data:any)=>{                  
             // let data = dat.find((u:any)=>u.username == this.loginForm.value.username && this.loginForm.value.password)
             localStorage.setItem('usertype', data.userType)
-            // if(data.usertype == 'user'){
-            //   localStorage.setItem('customerid', data.id)
-            // }
-            // else{
-              localStorage.setItem('id', data.id)
-            // }
             this.auth.setLocalStorage(data.token)
+            localStorage.setItem('username', data.username)
             this.router.navigate(['/navbar/home'])
-
       },
-      (error:any)=>{
+     error: (error:any)=>{
         console.log(error);
         if(error.status==401)
           alert("wrong username or password")
       }  
-    )  
+  })  
     }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { UserService } from '../../../services/user-service/user.service';
@@ -13,9 +13,11 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   @Input() userDetails: any
+  @ViewChild('modalClose') modalClose!: ElementRef
   userForm:FormGroup
   constructor(private fb: FormBuilder, private user: UserService){
     this.userForm = this.fb.group({
+      customerid: [1], //change later
       name: new FormControl(''),
       emailaddress: new FormControl(''),
       contactnumber: new FormControl('')
@@ -34,7 +36,18 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   }
 
   submit(){
-    this.user.setUserDetails(this.userForm.value)   
+    this.user.setUserDetails(this.userForm.value).subscribe(
+      {
+        next: (data)=>{
+          console.log(data);
+          this.modalClose.nativeElement.click()
+          
+        },
+        error: (error)=>{
+          console.log(error);
+        }
+      }
+    )   
   }
 
   

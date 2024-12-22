@@ -30,16 +30,17 @@ export class RegisterComponent {
     {
       const user = this.registerForm.value; 
       this.auth.addData(user).subscribe(
-        (data:any)=>{
-          if(data.status == 409){
-            alert("user already exists")
-          }
-          else{
+        {
+          next: (data:any)=>{
             alert("Registration Sucessful")
             this.router.navigate(['/login'])
+        }, 
+        error: (error)=>{
+          if(error.status == 409){
+            alert("user already exists")
           }
-            
         }
+      }
       )
     }
   }

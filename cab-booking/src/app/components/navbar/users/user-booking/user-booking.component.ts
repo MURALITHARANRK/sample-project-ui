@@ -18,6 +18,7 @@ export class UserBookingComponent {
     currentLocation: string = '';
     submitted = false;
     locationCoords: any = {currentLat: '', currentLng: '',destinationLat: '', destinationLng: ''}
+    bookingDetails:any
     distance:any = 0
     showCarTypes: any;
     carData:any
@@ -37,9 +38,18 @@ export class UserBookingComponent {
   
     onFindDriver() {
       if (this.locationForm.valid) {
+        this.getCarData()
         this.showCarTypes = true;
       }
     }
+
+    onEndRide() {
+      //api call
+      this.locationForm.reset()
+      this.submitted = false
+      this.showCarTypes = false
+    }
+      
     ngOnInit(): void {
       this.getUserLocation();
       this.getCarData()
@@ -97,9 +107,31 @@ export class UserBookingComponent {
     }
   
     onSubmit(): void {
-      this.submitted = true;
+      
       this.distance = this.user.getLocationBetweenTwoPoints(this.locationCoords) as number
       this.distance = Math.round(this.distance)
-      this.user.setLocationDetails(this.locationCoords)
+
+      this.bookingDetails = {
+        latitude: `${this.locationCoords.currentLat},${this.locationCoords.currentLng}`, //change later
+        longitude: `${this.locationCoords.destinationLat},${this.locationCoords.destinationLng}`, //change later
+        carid: this.locationForm.get('carType')?.value,
+        // username: localStorage.getItem('username'),
+        userid: 1, //change later
+        starttime: new Date().toLocaleTimeString(),
+    };
+      this.user.setBookingDetails(this.bookingDetails).subscribe({
+        next: (data:any)=>{
+          console.log(data);
+          this.submitted = true;
+        },
+        error: (error:any)=>{
+          console.log(error);
+        }
+      })
+      console.log(this.bookingDetails);
+      
+      console.log(this.locationCoords);
+      
+      // this.user.setLocationDetails(this.locationCoords)
     }  
 }

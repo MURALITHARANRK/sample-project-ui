@@ -71,6 +71,11 @@
         <div *ngIf="submitted" class="card-footer bg-success text-white">
           <p><strong></strong> Car has been booked. Distance is {{distance}} KM</p>
         </div>
+        <div *ngIf="submitted" class="form-group">
+          <button (click)="onEndRide()" type="button" class="btn btn-danger btn-block">
+            <i class="fas fa-times-circle"></i> End Ride
+          </button>
+        </div>
       </div>
     </div>
   </div>

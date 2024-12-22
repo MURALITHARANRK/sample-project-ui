@@ -19,7 +19,8 @@ export class CarInformationComponent {
   ngOnInit(): void {
     let x = this.active.snapshot.paramMap.get('id')
     this.admin.getCarDetailsById(x).subscribe({
-      next: (cars) => {this.carDetails = cars; console.log(cars);
+      next: (cars) => {
+        this.carDetails = cars; console.log(cars);
       },
       error: (err) => console.error('Error:', err.message),
     });

@@ -30,7 +30,12 @@ export class CarService {
     return this.auth.mockData$
   }
   getCarData(){
-    return this.mockCarData
+    // return this.mockCarData
+    return this.http.get(this.API_URL+'user/available')
+  }
+
+  getBookingDetails(id:any){
+    return this.http.get(this.API_URL+'car/booking?carid='+id)
   }
   
 }

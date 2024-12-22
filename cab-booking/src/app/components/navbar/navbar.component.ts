@@ -49,23 +49,29 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserDetails(){
-    // let id = localStorage.getItem("id")
+    // let username = localStorage.getItem("username")
     let id = 1
     this.user.getUserDetails(id).subscribe(
-      (data:any)=>{
+      {
+        next: (data:any)=>{
         this.childData = data       
 
       }, 
-      (error:any)=>{console.log(error);
+      error: (error:any)=>{
+        if(error.status == 409){
+          console.log(error);
+          this.childData = {name: localStorage.getItem('username'), contactnumber: '', emailaddress: ''}
+        }
       }
+    }
     )
   }
 
   getCarDetails(){
     this.car.getCarDetails().subscribe(
       (data:any)=>{
-        let id = localStorage.getItem('id')
-        let carData = data.find((u:any)=>u.id == id)
+        let username = localStorage.getItem('username')
+        let carData = data.find((u:any)=>u.username == username)
         this.childData = carData
       }
     )
