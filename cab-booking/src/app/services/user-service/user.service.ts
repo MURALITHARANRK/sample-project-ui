@@ -13,8 +13,9 @@ export class UserService {
   getUserDetails(id:any){
     // return this.auth.mockData$
     // return this.http.get(this.API_URL+'user/'+id as string)
-    let username = localStorage.getItem('username')
-    return this.http.get(this.API_URL+'user/'+username)
+    
+    // let username = localStorage.getItem('username')
+    return this.http.get(this.API_URL+'user/'+id)
   }
 
   setUserDetails(userData: {name:string, emailaddress: string, contactnumber: string}){

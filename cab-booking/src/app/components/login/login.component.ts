@@ -30,10 +30,12 @@ export class LoginComponent implements OnInit {
     .subscribe({
       next: (data:any)=>{                  
             // let data = dat.find((u:any)=>u.username == this.loginForm.value.username && this.loginForm.value.password)
-            localStorage.setItem('usertype', data.userType)
-            this.auth.setLocalStorage(data.token)
-            localStorage.setItem('username', data.username)
-            this.router.navigate(['/navbar/home'])
+            if(data.message == "Login successful"){
+              localStorage.setItem('usertype', data.userType)
+              this.auth.setLocalStorage(data.token)
+              localStorage.setItem('username', data.username)
+              this.router.navigate(['/navbar/home'])
+            }
       },
      error: (error:any)=>{
         console.log(error);

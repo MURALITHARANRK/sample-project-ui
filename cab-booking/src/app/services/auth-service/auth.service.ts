@@ -244,7 +244,13 @@ export class AuthService {
 
   login(userData:any){  
     // return this.mockData$  
-    return this.http.post(this.API_URL+'register/login', userData)
+    return this.http.post(this.API_URL+'register/login', userData) 
+    // {
+    //   message: "success",
+    //   username: "name",
+    //   status: 200,
+    //   usertype: "user"
+    // }
   }
 
   getToken(){
@@ -255,7 +261,7 @@ export class AuthService {
     return localStorage.getItem('usertype')
   }
   
-  addData(newData:any) {
+  register(newData:any) {
     // let newObject = {...newData, customerid: Math.floor(1000 + Math.random() * 9000), name: '', emailaddress: '', contactnumber: ''}
     // let newArray = [...this.mockData.value, newObject]
     // this.mockData.next(newArray)

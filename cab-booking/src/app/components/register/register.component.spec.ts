@@ -18,8 +18,7 @@ describe('RegisterComponent', () => {
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
-      declarations: [RegisterComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, RegisterComponent],
       providers: [
         { provide: AuthService, useValue: mockAuthService },
         { provide: Router, useValue: mockRouter }

@@ -35,6 +35,11 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
       }
   }
 
+  formReset(){
+    this.userForm.reset()
+    this.userForm.get('name')?.setValue(this.userDetails.name)
+  }
+
   submit(){
     this.user.setUserDetails(this.userForm.value).subscribe(
       {

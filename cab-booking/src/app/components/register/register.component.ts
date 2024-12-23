@@ -6,7 +6,7 @@ import { AuthService } from '../../services/auth-service/auth.service';
 
 @Component({
   selector: 'app-register',
-  standalone: true,
+  // standalone: true,
   imports: [RouterModule, ReactiveFormsModule, CommonModule],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -29,7 +29,7 @@ export class RegisterComponent {
     if (this.registerForm.valid) 
     {
       const user = this.registerForm.value; 
-      this.auth.addData(user).subscribe(
+      this.auth.register(user).subscribe(
         {
           next: (data:any)=>{
             alert("Registration Sucessful")
@@ -37,7 +37,7 @@ export class RegisterComponent {
         }, 
         error: (error)=>{
           if(error.status == 409){
-            alert("user already exists")
+            alert("User Name already exists")
           }
         }
       }

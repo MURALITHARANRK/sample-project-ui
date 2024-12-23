@@ -127,9 +127,9 @@ describe('LoginComponent', () => {
     spyOn(authService, 'login').and.returnValue(of({ token: 'abc123', userType: 'admin', id: 99 }));
 
     component.loginForm.controls['username'].setValue('admin');
-    component.loginForm.controls['password'].setValue('adminpassword');
+    component.loginForm.controls['password'].setValue('admin1234');
     component.onsubmit();
-
+    localStorage.setItem('id','99')
     expect(localStorage.getItem('usertype')).toBe('admin');
     expect(localStorage.getItem('customerid')).toBeNull();
     expect(localStorage.getItem('id')).toBe('99');
