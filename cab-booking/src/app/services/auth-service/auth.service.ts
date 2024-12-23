@@ -229,6 +229,7 @@ export class AuthService {
   mockBookingData$: Observable<any> = this.mockBookingData.asObservable()
 
   API_URL = environment.API_URL
+  static addData: any;
 
   constructor(private http: HttpClient) {}
 
