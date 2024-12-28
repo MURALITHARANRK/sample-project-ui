@@ -34,8 +34,8 @@ index: any;
   }
   
   getDetails() {
-    // let username = localStorage.getItem('username')
-    let id = 6 //change later
+    let id = localStorage.getItem('id')
+    // let id = 6 //change later
     this.car.getBookingDetails(id).subscribe({
       next: (data:any)=>{
         console.log(data);

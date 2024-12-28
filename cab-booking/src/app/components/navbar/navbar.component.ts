@@ -49,9 +49,9 @@ export class NavbarComponent implements OnInit {
   }
 
   getUserDetails(){
-    // let id = localStorage.getItem("id")
-    let id = 8
-    this.user.getUserDetails(id).subscribe(
+    let username = localStorage.getItem("username")
+    // let id = 8
+    this.user.getUserDetails(username).subscribe(
       {
         next: (data:any)=>{
         this.childData = data       

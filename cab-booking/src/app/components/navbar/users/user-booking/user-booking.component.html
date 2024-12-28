@@ -1,83 +1,92 @@
-
+@if(userDetailsPresent){
   <div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-12">
-      <div class="card card-primary">
-        <div class="card-header">
-          <h3 class="card-title">Book Your Cab</h3>
-        </div>
-        <form [formGroup]="locationForm" (ngSubmit)="onFindDriver()" class="p-3">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="currentLocation">Current Location</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+    <div class="row justify-content-center">
+      <div class="col-md-12">
+        <div class="card card-primary">
+          <div class="card-header">
+            <h3 class="card-title">Book Your Cab</h3>
+          </div>
+          <form [formGroup]="locationForm" (ngSubmit)="onFindDriver()" class="p-3">
+            <div class="form-row">
+              <div class="form-group col-md-6">
+                <label for="currentLocation">Current Location</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                  </div>
+                  <input
+                    id="currentLocation"
+                    type="text"
+                    class="form-control"
+                    [value]="currentLocation"
+                    formControlName="currentLocation"
+                    placeholder="Your current location"
+                    readonly
+                  />
                 </div>
-                <input
-                  id="currentLocation"
-                  type="text"
-                  class="form-control"
-                  [value]="currentLocation"
-                  formControlName="currentLocation"
-                  placeholder="Your current location"
-                  readonly
-                />
+              </div>
+  
+              <div class="form-group col-md-6">
+                <label for="destination">Destination</label>
+                <div class="input-group">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text"><i class="fas fa-search-location"></i></span>
+                  </div>
+                  <input
+                    id="destination"
+                    type="text"
+                    class="form-control"
+                    formControlName="destination"
+                    placeholder="Enter your destination"
+                  />
+                </div>
+                <small *ngIf="locationForm.get('destination')?.invalid && locationForm.get('destination')?.touched" class="text-danger">
+                  Destination is required.
+                </small>
               </div>
             </div>
-
-            <div class="form-group col-md-6">
-              <label for="destination">Destination</label>
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <span class="input-group-text"><i class="fas fa-search-location"></i></span>
-                </div>
-                <input
-                  id="destination"
-                  type="text"
-                  class="form-control"
-                  formControlName="destination"
-                  placeholder="Enter your destination"
-                />
-              </div>
-              <small *ngIf="locationForm.get('destination')?.invalid && locationForm.get('destination')?.touched" class="text-danger">
-                Destination is required.
-              </small>
+  
+            <div class="form-group">
+              <button type="button" class="btn btn-primary btn-block" [disabled]="!locationForm.valid" (click)="onFindDriver()">
+                <i class="fas fa-car"></i> Find a Driver
+              </button>
             </div>
+  
+            <div class="form-group" *ngIf="showCarTypes">
+              <label for="carType">Choose Car Type</label>
+              <select id="carType" class="form-control" formControlName="carType">
+                <option value="" disabled selected>Select a car type</option>
+                <option *ngFor="let car of carData" [value]="car.id">
+                  {{ car.brand }} {{ car.model }}
+                </option>
+              </select>
+            </div>
+  
+            <div class="form-group" *ngIf="showCarTypes">
+              <button (click)="onSubmit()" type="submit" class="btn btn-success btn-block">
+                <i class="fas fa-check-circle"></i> Book Now
+              </button>
+            </div>
+          </form>
+  
+          <div *ngIf="submitted" class="card-footer bg-success text-white">
+            <p><strong></strong> Car has been booked. Distance is {{distance}} KM</p>
           </div>
-
-          <div class="form-group">
-            <button type="button" class="btn btn-primary btn-block" [disabled]="!locationForm.valid" (click)="onFindDriver()">
-              <i class="fas fa-car"></i> Find a Driver
+          <div *ngIf="submitted" class="form-group">
+            <button (click)="onEndRide()" type="button" class="btn btn-danger btn-block">
+              <i class="fas fa-times-circle"></i> End Ride
             </button>
           </div>
-
-          <div class="form-group" *ngIf="showCarTypes">
-            <label for="carType">Choose Car Type</label>
-            <select id="carType" class="form-control" formControlName="carType">
-              <option value="" disabled selected>Select a car type</option>
-              <option *ngFor="let car of carData" [value]="car.id">
-                {{ car.brand }} {{ car.model }}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group" *ngIf="showCarTypes">
-            <button (click)="onSubmit()" type="submit" class="btn btn-success btn-block">
-              <i class="fas fa-check-circle"></i> Book Now
-            </button>
-          </div>
-        </form>
-
-        <div *ngIf="submitted" class="card-footer bg-success text-white">
-          <p><strong></strong> Car has been booked. Distance is {{distance}} KM</p>
-        </div>
-        <div *ngIf="submitted" class="form-group">
-          <button (click)="onEndRide()" type="button" class="btn btn-danger btn-block">
-            <i class="fas fa-times-circle"></i> End Ride
-          </button>
         </div>
       </div>
     </div>
   </div>
-</div>
+}
+@if(!userDetailsPresent){
+  <div class="container">
+    <div class="message">
+      Please Enter your contact details to book a ride
+    </div>
+  </div>
+
+}

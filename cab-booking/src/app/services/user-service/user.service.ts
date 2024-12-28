@@ -10,12 +10,12 @@ export class UserService {
   API_URL = environment.API_URL
   constructor(private http:HttpClient, private auth:AuthService) { }
 
-  getUserDetails(id:any){
+  getUserDetails(username:any){
     // return this.auth.mockData$
     // return this.http.get(this.API_URL+'user/'+id as string)
     
     // let username = localStorage.getItem('username')
-    return this.http.get(this.API_URL+'user/'+id)
+    return this.http.get(this.API_URL+'user/name/'+username)
   }
 
   setUserDetails(userData: {name:string, emailaddress: string, contactnumber: string}){

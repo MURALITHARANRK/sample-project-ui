@@ -17,7 +17,7 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   userForm:FormGroup
   constructor(private fb: FormBuilder, private user: UserService){
     this.userForm = this.fb.group({
-      customerid: [1], //change later
+      // customerid: [1], //change later
       name: new FormControl(''),
       emailaddress: new FormControl(''),
       contactnumber: new FormControl('')

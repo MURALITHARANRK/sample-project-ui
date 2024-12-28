@@ -20,14 +20,14 @@
         <tr>
           <td>{{ booking.bookingid }}</td>
           <td>
-            <a [href]="findLocationUrl(booking.latitude)" target="_blank" rel="noopener noreferrer"> /
+            <a [href]="findLocationUrl(booking.source)" target="_blank" rel="noopener noreferrer"> /
               <!-- change later -->
                 click here for User Location
               <!-- {{ findAddress(booking.latitude) }} -->
             </a>
           </td>
           <td>
-            <a [href]="findLocationUrl(booking.longitude)" target="_blank" rel="noopener noreferrer">
+            <a [href]="findLocationUrl(booking.destination)" target="_blank" rel="noopener noreferrer">
               <!-- change later -->
                 click here for User Destination
               <!-- {{ findAddress(booking.longitude) }} -->
