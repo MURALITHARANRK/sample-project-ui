@@ -17,12 +17,13 @@ export class CarInformationComponent {
   childData:any
   constructor(private admin:AdminService, private active:ActivatedRoute){}
   ngOnInit(): void {
-    let x = this.active.snapshot.paramMap.get('id')
-    this.admin.getCarDetailsById(x).subscribe({
+    let driverid = this.active.snapshot.paramMap.get('id')
+    this.admin.getCarDetailsById(driverid).subscribe({
       next: (cars) => {
-        this.carDetails = cars; console.log(cars);
+        this.carDetails = cars; 
+        console.log(cars);
       },
-      error: (err) => console.error('Error:', err.message),
+      error: (err) => console.error('Error:', err.error),
     });
   }
 }

@@ -16,6 +16,15 @@ export class DriverDetailsComponent implements OnInit {
   driverDetails:any
   constructor(private admin:AdminService){}
   ngOnInit(): void {
-    this.driverDetails=this.admin.getDriverDetails();
+    this.admin.getDriverDetails().subscribe({
+      next: (response)=>{
+        console.log(response);
+        this.driverDetails = response
+      },
+      error: (error)=>{
+        console.log(error);
+        
+      }
+    })
   }
 }

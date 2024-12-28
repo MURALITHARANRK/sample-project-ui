@@ -17,7 +17,6 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   userForm:FormGroup
   constructor(private fb: FormBuilder, private user: UserService){
     this.userForm = this.fb.group({
-      // customerid: [1], //change later
       name: new FormControl(''),
       emailaddress: new FormControl(''),
       contactnumber: new FormControl('')
@@ -38,6 +37,8 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   formReset(){
     this.userForm.reset()
     this.userForm.get('name')?.setValue(this.userDetails.name)
+    this.userForm.get('contactnumber')?.setValue(this.userDetails.contactnumber)
+    this.userForm.get('emailaddress')?.setValue(this.userDetails.emailaddress)
   }
 
   submit(){

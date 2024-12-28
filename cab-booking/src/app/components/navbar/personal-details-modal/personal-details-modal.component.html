@@ -23,7 +23,7 @@
             </div>
             <div class="modal-footer">
               <button (click)="formReset()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              @if(this.userForm.get('contactnumber')?.value == ''){
+              @if(this.userDetails.contactnumber == ''){
                 <button type="submit" class="btn btn-primary">Save changes</button>
               }
             </div>

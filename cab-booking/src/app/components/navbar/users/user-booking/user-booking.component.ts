@@ -27,7 +27,7 @@ export class UserBookingComponent {
       this.locationForm = this.fb.group({
         currentLocation: [''],
         destination: ['', Validators.required],
-        carType: [''],
+        carid: [''],
       });
     }
 
@@ -35,6 +35,11 @@ export class UserBookingComponent {
       this.car.getCarData().subscribe(
         (data)=>{this.carData = data; console.log(data)}
       )
+    }
+
+    sample(){
+      console.log(this.locationForm.value);
+      
     }
   
     onFindDriver() {
@@ -131,15 +136,14 @@ export class UserBookingComponent {
       this.bookingDetails = {
         source: `${this.locationCoords.currentLat},${this.locationCoords.currentLng}`, //change later
         destination: `${this.locationCoords.destinationLat},${this.locationCoords.destinationLng}`, //change later
-        carid: this.locationForm.get('carType')?.value,
-        // username: localStorage.getItem('username'),
-        // userid: 1, //change later
+        carid: this.locationForm.get('carid')?.value,
         userid: localStorage.getItem('id'),
         starttime: new Date().toLocaleTimeString(),
     };
+
       this.user.setBookingDetails(this.bookingDetails).subscribe({
         next: (data:any)=>{
-          console.log(data);
+          console.log(data, "yes");
           this.submitted = true;
         },
         error: (error:any)=>{

@@ -12,6 +12,15 @@ export class UserDetailsComponent {
   userDetails:any
   constructor(private admin:AdminService){}
   ngOnInit(): void {
-    this.userDetails=this.admin.getAllUsers();
+    this.admin.getAllUsers().subscribe(
+      {
+        next: (data)=>{
+          console.log(data);
+          this.userDetails = data
+        },
+        error: (error)=>{console.log(error);
+        }
+      }
+    )
   }
 }

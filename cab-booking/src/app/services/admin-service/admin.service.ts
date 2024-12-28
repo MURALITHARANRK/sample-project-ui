@@ -1,13 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth-service/auth.service';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environment/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
 
-  constructor(private auth: AuthService) { }
+  API_URL  = environment.API_URL
+
+  constructor(private auth: AuthService, private http: HttpClient) { }
 
     mockCarData: BehaviorSubject<any>= new BehaviorSubject<any>([
       { id: 1, registrationnumber: 'ABC123', brand: 'Toyota', model: 'Camry' },
@@ -42,37 +46,35 @@ export class AdminService {
     },
   ];
 
-  getCarDetailsById(id: any): Observable<any[]> {
-    return this.mockCarData$.pipe(
-      map((cars:any) => {
-        const filteredCars = cars.filter((car: any) => car.id == id);
-        if (filteredCars.length === 0) {
-          throw new Error(`No cars found for ID: ${id}`);
-        }
-        return filteredCars;
-      }),
-      catchError((error) => {
-        console.error(error.message);
-        return throwError(() => new Error(`Error fetching car details: ${error.message}`));
-      })
-    );
+  getCarDetailsById(id: any) {
+    // return this.mockCarData$.pipe(
+    //   map((cars:any) => {
+    //     const filteredCars = cars.filter((car: any) => car.id == id);
+    //     if (filteredCars.length === 0) {
+    //       throw new Error(`No cars found for ID: ${id}`);
+    //     }
+    //     return filteredCars;
+    //   }),
+    //   catchError((error) => {
+    //     console.error(error.message);
+    //     return throwError(() => new Error(`Error fetching car details: ${error.message}`));
+    //   })
+    // );
+    return this.http.get(this.API_URL+'car/driver/'+id)
   }
 
   getAllUsers(){
-    return this.auth.mockData$
+    // return this.auth.mockData$
+    return this.http.get(this.API_URL+'admin/users')
   }
 
   getDriverDetails(){
-    return this.mockDriverData;
+    // return this.mockDriverData;
+    return this.http.put(this.API_URL+'admin/driver', '')
  }
 
- setCarDetails(carData: { id: any; registrationnumber: string; brand: string; model: string }) {
-  try {
-    const updatedCars = [...this.mockCarData.value, carData];
-    this.mockCarData.next(updatedCars);
-  } catch (error:any) {
-    console.error('Error adding car details:', error.message);
-  }
+ setCarDetails(carData: any) {
+    return this.http.post(this.API_URL+'admin/create',carData)
 }
 
 }
