@@ -70,7 +70,7 @@ export class AdminService {
 
   getDriverDetails(){
     // return this.mockDriverData;
-    return this.http.put(this.API_URL+'admin/driver', '')
+    return this.http.get(this.API_URL+'admin/driver')
  }
 
  setCarDetails(carData: any) {

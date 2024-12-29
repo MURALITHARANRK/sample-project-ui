@@ -56,7 +56,7 @@ export class UserService {
     return this.http.post(this.API_URL+'user/booking',bookingDetails)
   }
   endRide(carid:any, endtime:any){
-    return this.http.put(this.API_URL+'user/'+carid+'/endTrip?endTime='+endtime,'')
+    return this.http.put(this.API_URL+'user/'+carid+'/endTrip?endTime='+endtime,'',{responseType:'text'})
   }
   
 }

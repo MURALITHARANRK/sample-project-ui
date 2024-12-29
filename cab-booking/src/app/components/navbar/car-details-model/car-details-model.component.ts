@@ -21,7 +21,7 @@ export class CarDetailsModelComponent implements OnInit, OnChanges{
         registrationNumber: new FormControl(''),
         brand: new FormControl(''),
         model: new FormControl(''),
-        availabilty: [true]
+        availability: [true]
       })
     }
   
