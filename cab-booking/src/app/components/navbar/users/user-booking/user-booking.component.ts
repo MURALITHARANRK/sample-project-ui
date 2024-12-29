@@ -58,6 +58,7 @@ export class UserBookingComponent {
           console.log(data);
           alert(data);
           this.locationForm.reset()
+          this.getUserLocation();
           this.submitted = false
           this.showCarTypes = false
         },

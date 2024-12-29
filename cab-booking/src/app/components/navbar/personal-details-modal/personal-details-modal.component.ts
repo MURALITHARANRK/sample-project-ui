@@ -15,6 +15,7 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
   @Input() userDetails: any
   @ViewChild('modalClose') modalClose!: ElementRef
   userForm:FormGroup
+  userDetailsNotAvailable:boolean = true
   constructor(private fb: FormBuilder, private user: UserService){
     this.userForm = this.fb.group({
       name: new FormControl(''),
@@ -28,18 +29,22 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
       if(changes['userDetails']){
+        if(this.userDetails.contactnumber != '' && this.userDetails.contactnumber != undefined){
+          this.userDetailsNotAvailable = false
+        }
+
         this.userForm.get('contactnumber')?.setValue(this.userDetails.contactnumber)
         this.userForm.get('emailaddress')?.setValue(this.userDetails.emailaddress)
         this.userForm.get('name')?.setValue(this.userDetails.name)
       }
   }
 
-  formReset(){
-    this.userForm.reset()
-    this.userForm.get('name')?.setValue(this.userDetails.name)
-    this.userForm.get('contactnumber')?.setValue(this.userDetails.contactnumber)
-    this.userForm.get('emailaddress')?.setValue(this.userDetails.emailaddress)
-  }
+  // formReset(){
+  //   this.userForm.reset()
+  //   this.userForm.get('name')?.setValue(this.userDetails.name)
+  //   this.userForm.get('contactnumber')?.setValue(this.userDetails.contactnumber)
+  //   this.userForm.get('emailaddress')?.setValue(this.userDetails.emailaddress)
+  // }
 
   submit(){
     this.user.setUserDetails(this.userForm.value).subscribe(
@@ -47,7 +52,7 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
         next: (data)=>{
           console.log(data);
           this.modalClose.nativeElement.click()
-          
+          this.userDetailsNotAvailable = false
         },
         error: (error)=>{
           console.log(error);

@@ -62,6 +62,7 @@ export class NavbarComponent implements OnInit {
         if(error.status == 409){
           console.log(error);
           this.childData = {name: localStorage.getItem('username'), contactnumber: '', emailaddress: ''}
+          console.log(this.childData)
         }
       }
     }

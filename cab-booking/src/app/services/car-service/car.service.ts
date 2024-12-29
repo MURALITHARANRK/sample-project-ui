@@ -37,5 +37,9 @@ export class CarService {
   getBookingDetails(id:any){
     return this.http.get(this.API_URL+'car/booking?carid='+id)
   }
+
+  acceptRide(carid:any){
+    return this.http.put(this.API_URL+'car/accept?carid='+carid,'',{responseType:'text'})
+  }
   
 }

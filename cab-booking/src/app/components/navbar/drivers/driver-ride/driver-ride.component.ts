@@ -25,9 +25,10 @@ export class DriverRideComponent implements OnInit {
   sourceUrl:any;
   destinationUrl:any;
   selectedUser:any;
-  index: any;
-  index2:any
+  primaryCar:any
+  primaryCarAvailability:any
   showBookingDetails: boolean = false;
+  acceptText:any
   constructor(private auth: AuthService, private car: CarService, private user: UserService, private admin: AdminService){
     // this.bookingDetails = this.auth.mockBookingData.value[0]
     // this.sourceUrl = "https://www.google.com/maps?q="+this.bookingDetails.sourceCoord
@@ -52,15 +53,19 @@ export class DriverRideComponent implements OnInit {
     })
   }
 
-  getBookingDetails(carid:any){
+  getBookingDetails(carid:any, availability:any){
     this.car.getBookingDetails(carid).subscribe({
       next: (data:any)=>{
         console.log(data);
         this.bookingDetails = data
+        this.primaryCar = carid
+        this.primaryCarAvailability = availability
         this.showBookingDetails = true
       },
       error: (error:any)=>{
+
         console.log(error);
+        this.showBookingDetails = false
       }
     })
   }
@@ -84,18 +89,35 @@ export class DriverRideComponent implements OnInit {
     );
   }
 
-  findLocationUrl(location:any){
-    console.log("working");
-    
+  findLocationUrl(location:any){    
     return 'https://google.com/maps?q='+location
   }
 
-  
+
   viewDetails(id:any){
     this.user.getUserDetailsById(id).subscribe({
       next: (data:any)=>{
         console.log(data);
         this.selectedUser = data
+        if(this.primaryCarAvailability == true){
+          this.acceptText = "Accept Ride"
+        }
+        else{
+          this.acceptText = "Ride Accepted"
+        }
+      },
+      error: (error:any)=>{
+        console.log(error);
+      }
+    })
+  }
+
+  acceptRide(){
+    this.car.acceptRide(this.primaryCar).subscribe({
+      next: (data:any)=>{
+        console.log(data);
+        this.acceptText = "Ride Accepted"
+        alert(data)
       },
       error: (error:any)=>{
         console.log(error);
