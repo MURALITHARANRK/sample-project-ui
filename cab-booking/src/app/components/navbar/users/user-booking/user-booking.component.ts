@@ -57,8 +57,8 @@ export class UserBookingComponent {
         next:(data:any)=>{
           console.log(data);
           this.locationForm.reset()
-      this.submitted = false
-      this.showCarTypes = false
+          this.submitted = false
+          this.showCarTypes = false
         },
         error:(err:any)=>{
           console.log('Error', err);

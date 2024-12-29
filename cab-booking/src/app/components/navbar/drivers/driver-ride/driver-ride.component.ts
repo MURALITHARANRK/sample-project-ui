@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { CarService } from '../../../../services/car-service/car.service';
 import { UserService } from '../../../../services/user-service/user.service';
 import { GoogleMapsModule } from '@angular/google-maps';
+import { AdminService } from '../../../../services/admin-service/admin.service';
 
 
 
@@ -18,29 +19,45 @@ import { GoogleMapsModule } from '@angular/google-maps';
 })
 export class DriverRideComponent implements OnInit {
   
-  showDetails: boolean = false;
+  showCarDetails: boolean = false;
   bookingDetails:any
+  carDetails:any
   sourceUrl:any;
   destinationUrl:any;
   selectedUser:any;
-index: any;
-  constructor(private auth: AuthService, private car: CarService, private user: UserService){
+  index: any;
+  index2:any
+  showBookingDetails: boolean = false;
+  constructor(private auth: AuthService, private car: CarService, private user: UserService, private admin: AdminService){
     // this.bookingDetails = this.auth.mockBookingData.value[0]
     // this.sourceUrl = "https://www.google.com/maps?q="+this.bookingDetails.sourceCoord
     // this.destinationUrl = "https://www.google.com/maps?q="+this.bookingDetails.destinationCoord
   }
   ngOnInit(): void {
-    this.getDetails()
+    this.getCarDetails()
   }
   
-  getDetails() {
+  getCarDetails() {
     let id = localStorage.getItem('id')
     // let id = 6 //change later
-    this.car.getBookingDetails(id).subscribe({
+    this.admin.getCarDetailsById(id).subscribe({
+      next: (data:any)=>{
+        console.log(data);
+        this.carDetails = data
+        this.showCarDetails = true
+      },
+      error: (error:any)=>{
+        console.log(error);
+      }
+    })
+  }
+
+  getBookingDetails(carid:any){
+    this.car.getBookingDetails(carid).subscribe({
       next: (data:any)=>{
         console.log(data);
         this.bookingDetails = data
-        this.showDetails = true
+        this.showBookingDetails = true
       },
       error: (error:any)=>{
         console.log(error);
@@ -73,15 +90,9 @@ index: any;
     return 'https://google.com/maps?q='+location
   }
 
+  
   viewDetails(id:any){
-    // this.auth.mockData$.subscribe(
-    //   (data)=>{
-    //     let user = data.find((u:any)=>u.customerid==id)
-    //     this.selectedUser = user
-    //   }
-    // )
-    let idd = 1
-    this.user.getUserDetails(idd).subscribe({
+    this.user.getUserDetailsById(id).subscribe({
       next: (data:any)=>{
         console.log(data);
         this.selectedUser = data
@@ -90,7 +101,6 @@ index: any;
         console.log(error);
       }
     })
-
   }
 }
   

@@ -18,6 +18,10 @@ export class UserService {
     return this.http.get(this.API_URL+'user/name/'+username)
   }
 
+  getUserDetailsById(id:any){
+    return this.http.get(this.API_URL+'car?id='+id)
+  }
+
   setUserDetails(userData: {name:string, emailaddress: string, contactnumber: string}){
     // let customerid = localStorage.getItem('customerid');
     // let currentArray = this.auth.mockData.value;
@@ -55,8 +59,9 @@ export class UserService {
     console.log(bookingDetails, "final")
     return this.http.post(this.API_URL+'user/booking',bookingDetails)
   }
+
   endRide(carid:any, endtime:any){
-    return this.http.put(this.API_URL+'user/'+carid+'/endTrip?endTime='+endtime,'')
+    return this.http.put(this.API_URL+'user/'+carid+'/endTrip?endTime='+endtime,'',{responseType:'text'})
   }
   
 }

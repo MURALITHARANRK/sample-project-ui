@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
             // let data = dat.find((u:any)=>u.username == this.loginForm.value.username && this.loginForm.value.password)
             if(data.message == "Login successful"){
               localStorage.setItem('usertype', data.userType)
-              localStorage.setItem('id', data.id)
               this.auth.setLocalStorage(data.token)
               localStorage.setItem('username', data.username)
               this.router.navigate(['/navbar/home'])

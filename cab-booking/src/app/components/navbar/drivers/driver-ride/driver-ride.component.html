@@ -1,52 +1,84 @@
 <div class="container">
-  <button class="refresh-btn btn btn-primary mb-3" (click)="getDetails()">Refresh</button>
+  <button class="refresh-btn btn btn-primary mb-3" (click)="getCarDetails()">Refresh</button>
 
-  <div *ngIf="!showDetails" class="message">
+  <div *ngIf="!showCarDetails" class="message">
     Waiting for the details...
   </div>
 
-  <div *ngIf="showDetails">
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th>#</th>
-          <th>Source</th>
-          <th>Destination</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        @for(booking of bookingDetails; track index){
-        <tr>
-          <td>{{ booking.bookingid }}</td>
-          <td>
-            <a [href]="findLocationUrl(booking.source)" target="_blank" rel="noopener noreferrer"> /
-              <!-- change later -->
-                click here for User Location
-              <!-- {{ findAddress(booking.latitude) }} -->
-            </a>
-          </td>
-          <td>
-            <a [href]="findLocationUrl(booking.destination)" target="_blank" rel="noopener noreferrer">
-              <!-- change later -->
-                click here for User Destination
-              <!-- {{ findAddress(booking.longitude) }} -->
-            </a>
-          </td>
-          <td>
-            <button class="btn btn-info btn-sm" (click)="viewDetails(bookingDetails.userid)">View Details</button>
-          </td>
-        </tr>
-      }
-      </tbody>
-    </table>
+  <div *ngIf="showCarDetails">
+    <div>
+      <table class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>Car Model</th>
+            <th>Car Brand</th>
+            <th>Reg No</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(car of carDetails; track car.id){
+          <tr>
+            <td>{{ car.id }}</td>
+            <td>{{car.model}}</td>
+            <td>{{car.brand}}</td>
+            <td>{{car.registrationNumber}}</td>
+  
+            <td>
+              <button class="btn btn-info btn-sm" (click)="getBookingDetails(car.id)">View booking</button>
+            </td>
+          </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+
+    <div>
+      <table *ngIf="showBookingDetails" class="table table-bordered">
+        <thead class="thead-dark">
+          <tr>
+            <th>#</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for(booking of bookingDetails; track booking.bookingid){
+          <tr>
+            <td>{{ booking.bookingid }}</td>
+            <td>
+              <a [href]="findLocationUrl(booking.source)" target="_blank" rel="noopener noreferrer"> 
+                <!-- change later -->
+                  click here for pickup Location
+                <!-- {{ findAddress(booking.latitude) }} -->
+              </a>
+            </td>
+            <td>
+              <a [href]="findLocationUrl(booking.destination)" target="_blank" rel="noopener noreferrer">
+                <!-- change later -->
+                  click here for Drop Location
+                <!-- {{ findAddress(booking.longitude) }} -->
+              </a>
+            </td>
+            <td>
+              <button class="btn btn-info btn-sm" (click)="viewDetails(booking.userid)">View Details</button>
+            </td>
+          </tr>
+        }
+        </tbody>
+      </table>
+    </div>
+
 
     <div *ngIf="selectedUser" class="card mt-3">
       <div class="card-body">
         <h3>User Details</h3>
-        <p><strong>Name:</strong> {{ selectedUser.username }}</p>
+        <p><strong>Name:</strong> {{ selectedUser.name }}</p>
         <p><strong>Contact No:</strong> {{ selectedUser.contactnumber }}</p>
         <p><strong>Email:</strong> {{ selectedUser.emailaddress }}</p>
+        <button class="btn btn-danger">Accept Ride</button>
       </div>
     </div>
   </div>
