@@ -53,18 +53,19 @@ export class UserBookingComponent {
       //api call
       let id=this.locationForm.get('carid')?.value
       let endtime=new Date().toLocaleTimeString()
-      this.user.endRide(id,endtime)
-      this.locationForm.reset()
-      this.submitted = false
-      this.showCarTypes = false
       this.user.endRide(id, endtime).subscribe({
         next:(data:any)=>{
           console.log(data);
+          this.locationForm.reset()
+      this.submitted = false
+      this.showCarTypes = false
         },
         error:(err:any)=>{
           console.log('Error', err);
         }
       })
+      
+      
 
     }
 
