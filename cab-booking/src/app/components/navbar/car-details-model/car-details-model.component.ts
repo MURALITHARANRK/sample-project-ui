@@ -20,7 +20,8 @@ export class CarDetailsModelComponent implements OnInit, OnChanges{
         driverid: [this.active.snapshot.paramMap.get('id')],
         registrationNumber: new FormControl(''),
         brand: new FormControl(''),
-        model: new FormControl('')
+        model: new FormControl(''),
+        availabilty: [true]
       })
     }
   

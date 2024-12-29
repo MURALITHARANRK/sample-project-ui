@@ -11,11 +11,13 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                @if(userType=='user'){
                 <li class="nav-item">
                     <a class="nav-link" title="details" data-toggle="modal" [attr.data-target]="modalName">
                         <i class="fas fa-user"></i>
                     </a>
                 </li>
+                }
                 <li class="nav-item">
                     <a class="nav-link" title="logout" (click)="logout()">
                         <i class="fas fa-sign-out-alt"></i>
