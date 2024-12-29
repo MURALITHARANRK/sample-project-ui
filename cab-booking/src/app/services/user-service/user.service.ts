@@ -52,9 +52,8 @@ export class UserService {
   }
 
   setBookingDetails(bookingDetails:any){
+    console.log(bookingDetails, "final")
     return this.http.post(this.API_URL+'user/booking',bookingDetails)
   }
   
-
-
 }
