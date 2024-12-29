@@ -56,6 +56,7 @@ export class UserBookingComponent {
       this.user.endRide(id, endtime).subscribe({
         next:(data:any)=>{
           console.log(data);
+          alert(data);
           this.locationForm.reset()
           this.submitted = false
           this.showCarTypes = false
