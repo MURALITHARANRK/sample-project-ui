@@ -14,7 +14,7 @@ describe('RegisterComponent', () => {
   let mockRouter: jasmine.SpyObj<Router>;
 
   beforeEach(async () => {
-    mockAuthService = jasmine.createSpyObj('AuthService', ['addData']);
+    mockAuthService = jasmine.createSpyObj('AuthService', ['register']);
     mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
     await TestBed.configureTestingModule({
@@ -74,9 +74,9 @@ describe('RegisterComponent', () => {
     expect(confirmPasswordControl?.hasError('passwordMismatch')).toBeTrue();
   });
 
-  it('should call AuthService.addData on valid form submission', () => {
+  it('should call AuthService.register on valid form submission', () => {
     const mockResponse = of({});
-    mockAuthService.addData.and.returnValue(mockResponse);
+    mockAuthService.register.and.returnValue(mockResponse);
 
     component.registerForm.patchValue({
       username: 'testuser',
@@ -87,7 +87,7 @@ describe('RegisterComponent', () => {
 
     component.onSubmit();
 
-    expect(mockAuthService.addData).toHaveBeenCalledWith({
+    expect(mockAuthService.register).toHaveBeenCalledWith({
       username: 'testuser',
       usertype: 'user',
       password: 'Password123',
@@ -97,7 +97,7 @@ describe('RegisterComponent', () => {
 
   it('should navigate to login page on successful registration', () => {
     const mockResponse = of({});
-    mockAuthService.addData.and.returnValue(mockResponse);
+    mockAuthService.register.and.returnValue(mockResponse);
 
     component.registerForm.patchValue({
       username: 'testuser',
@@ -114,7 +114,7 @@ describe('RegisterComponent', () => {
   it('should show an alert if the user already exists', () => {
     spyOn(window, 'alert');
     const mockError = { status: 409 };
-    mockAuthService.addData.and.returnValue(throwError(() => mockError));
+    mockAuthService.register.and.returnValue(throwError(() => mockError));
 
     component.registerForm.patchValue({
       username: 'testuser',
@@ -125,6 +125,6 @@ describe('RegisterComponent', () => {
 
     component.onSubmit();
 
-    expect(window.alert).toHaveBeenCalledWith('user already exists');
+    expect(window.alert).toHaveBeenCalledWith('User Name already exists');
   });
 });

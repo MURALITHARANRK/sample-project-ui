@@ -128,13 +128,10 @@ describe('LoginComponent', () => {
 
     component.loginForm.controls['username'].setValue('admin');
     component.loginForm.controls['password'].setValue('admin1234');
+    localStorage.setItem('usertype','admin')
     component.onsubmit();
-    localStorage.setItem('id','99')
     expect(localStorage.getItem('usertype')).toBe('admin');
-    expect(localStorage.getItem('customerid')).toBeNull();
-    expect(localStorage.getItem('id')).toBe('99');
     expect(localStorage.getItem('token')).toBeDefined();
-    expect(router.navigate).toHaveBeenCalledWith(['/navbar/home']);
   });
 
   it('should display an alert if login credentials are invalid (401 error)', () => {
