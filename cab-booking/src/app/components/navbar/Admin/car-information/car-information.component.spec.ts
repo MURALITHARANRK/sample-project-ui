@@ -4,6 +4,7 @@ import { CarInformationComponent } from './car-information.component';
 import { provideHttpClient } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from '../../../../app.routes';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 
 
@@ -14,7 +15,7 @@ describe('CarInformationComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CarInformationComponent],
-      providers:[provideHttpClient(),provideRouter(routes)],
+      providers:[provideHttpClient(),provideRouter(routes), provideAnimations()],
     })
     .compileComponents();
 

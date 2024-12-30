@@ -4,6 +4,7 @@ import { DriverDetailsComponent } from './driver-details.component';
 import { HttpClient, provideHttpClient } from '@angular/common/http';
 import { provideRouter, RouterModule } from '@angular/router';
 import { routes } from '../../../../app.routes';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 describe('DriverDetailsComponent', () => {
   let component: DriverDetailsComponent;
@@ -12,7 +13,7 @@ describe('DriverDetailsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [DriverDetailsComponent],
-      providers: [provideHttpClient(), provideRouter(routes)]
+      providers: [provideHttpClient(), provideRouter(routes),provideAnimations()]
     })
     .compileComponents();
 
