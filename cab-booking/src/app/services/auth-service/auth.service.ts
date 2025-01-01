@@ -2,6 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { LoginResponse } from '../../models/loginResponseModel';
+import { Login } from '../../models/loginModel';
+import { Register } from '../../models/registerModel';
+import { RegisterResponse } from '../../models/registerResponseModel';
 
 @Injectable({
   providedIn: 'root'
@@ -242,9 +246,9 @@ export class AuthService {
     return true? authToken!='' && authToken!=undefined : false
   }
 
-  login(userData:any){  
+  login(userData:Login){  
     // return this.mockData$  
-    return this.http.post(this.API_URL+'register/login', userData) 
+    return this.http.post<LoginResponse>(this.API_URL+'register/login', userData) 
     // {
     //   message: "success",
     //   username: "name",
@@ -257,16 +261,16 @@ export class AuthService {
     return localStorage.getItem('token')
   }
 
-  getUserType(){
-    return localStorage.getItem('usertype')
+  getUserType():string{
+    return localStorage.getItem('usertype') as string
   }
   
-  register(newData:any) {
+  register(newData:Register) {
     // let newObject = {...newData, customerid: Math.floor(1000 + Math.random() * 9000), name: '', emailaddress: '', contactnumber: ''}
     // let newArray = [...this.mockData.value, newObject]
     // this.mockData.next(newArray)
 
-    return this.http.post(this.API_URL+'register/create', newData)
+    return this.http.post<RegisterResponse>(this.API_URL+'register/create', newData)
   }
 }
 

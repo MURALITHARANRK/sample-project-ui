@@ -115,7 +115,7 @@ describe('LoginComponent', () => {
   });
 
   it('should call the AuthService login method when onsubmit is invoked', () => {
-    const loginSpy = spyOn(authService, 'login').and.returnValue(of({ token: 'abc123', userType: 'user', id: 1 }));
+    const loginSpy = spyOn(authService, 'login').and.returnValue(of({ token: 'abc123', userType: 'user',id: '99', username:"admin", message: "Login Successfull" }));
     component.loginForm.controls['username'].setValue('user');
     component.loginForm.controls['password'].setValue('password123');
     component.onsubmit();
@@ -124,7 +124,7 @@ describe('LoginComponent', () => {
 
 
   it('should handle a successful login for an admin and navigate to /navbar/home', () => {
-    spyOn(authService, 'login').and.returnValue(of({ token: 'abc123', userType: 'admin', id: 99 }));
+    spyOn(authService, 'login').and.returnValue(of({ token: 'abc123', userType: 'admin', id: '99', username:"admin", message: "Login Successfull"}));
 
     component.loginForm.controls['username'].setValue('admin');
     component.loginForm.controls['password'].setValue('admin1234');

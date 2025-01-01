@@ -7,6 +7,8 @@ import { CarService } from '../../../../services/car-service/car.service';
 import { UserService } from '../../../../services/user-service/user.service';
 import { GoogleMapsModule } from '@angular/google-maps';
 import { AdminService } from '../../../../services/admin-service/admin.service';
+import { Car } from '../../../../models/carModel';
+import { Booking } from '../../../../models/bookingModel';
 
 
 
@@ -20,29 +22,24 @@ import { AdminService } from '../../../../services/admin-service/admin.service';
 export class DriverRideComponent implements OnInit {
   
   showCarDetails: boolean = false;
-  bookingDetails:any
-  carDetails:any
-  sourceUrl:any;
-  destinationUrl:any;
-  selectedUser:any;
-  primaryCar:any
-  primaryCarAvailability:any
+  bookingDetails!:Booking[]
+  carDetails!:Car[]
+  selectedUser:any; //multiple uses
+  primaryCar!:number
+  primaryCarAvailability!:boolean
   showBookingDetails: boolean = false;
-  acceptText:any
+  acceptText:string=''
   constructor(private auth: AuthService, private car: CarService, private user: UserService, private admin: AdminService){
-    // this.bookingDetails = this.auth.mockBookingData.value[0]
-    // this.sourceUrl = "https://www.google.com/maps?q="+this.bookingDetails.sourceCoord
-    // this.destinationUrl = "https://www.google.com/maps?q="+this.bookingDetails.destinationCoord
+
   }
   ngOnInit(): void {
     this.getCarDetails()
   }
   
   getCarDetails() {
-    let id = localStorage.getItem('id')
-    // let id = 6 //change later
+    let id = localStorage.getItem('id') as string
     this.admin.getCarDetailsById(id).subscribe({
-      next: (data:any)=>{
+      next: (data:Car[])=>{
         console.log(data);
         this.carDetails = data
         this.showCarDetails = true
@@ -53,9 +50,10 @@ export class DriverRideComponent implements OnInit {
     })
   }
 
-  getBookingDetails(carid:any, availability:any){
+  getBookingDetails(carid:number, availability:boolean){
+    this.selectedUser = ''
     this.car.getBookingDetails(carid).subscribe({
-      next: (data:any)=>{
+      next: (data:Booking[])=>{
         console.log(data);
         this.bookingDetails = data
         this.primaryCar = carid
@@ -70,8 +68,8 @@ export class DriverRideComponent implements OnInit {
     })
   }
 
-  findAddress(location:any){
-    const [lat, lng] = location.split(",").map((coord:any) => parseFloat(coord.trim()));
+  findAddress(location:string){
+    const [lat, lng] = location.split(",").map((coord:string) => parseFloat(coord.trim()));
     console.log(lat, lng);
     
     const geocoder = new google.maps.Geocoder();
@@ -89,12 +87,12 @@ export class DriverRideComponent implements OnInit {
     );
   }
 
-  findLocationUrl(location:any){    
+  findLocationUrl(location:string){    
     return 'https://google.com/maps?q='+location
   }
 
 
-  viewDetails(id:any){
+  viewDetails(id:number){
     this.user.getUserDetailsById(id).subscribe({
       next: (data:any)=>{
         console.log(data);

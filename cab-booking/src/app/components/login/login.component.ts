@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import{FormControl,FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
+import{FormBuilder, FormControl,FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import { AuthService } from '../../services/auth-service/auth.service';
 import { HttpClient } from '@angular/common/http';
+import { LoginResponse } from '../../models/loginResponseModel';
+import { Login } from '../../models/loginModel';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +14,13 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './login.component.css'
 })
 export class LoginComponent implements OnInit {
-  loginForm=new FormGroup({
-    username:new FormControl('', Validators.required),
-    password:new FormControl('',[Validators.required, Validators.minLength(8)]),
-
-  });
-  constructor(private http: HttpClient, private router:Router, private auth: AuthService){
+  loginForm:FormGroup
+  constructor(private fb: FormBuilder,private http: HttpClient, private router:Router, private auth: AuthService){
+    this.loginForm = this.fb.group({
+      username:['', Validators.required],
+      password:['',[Validators.required, Validators.minLength(8)]],
+  
+    });
   }
 
   ngOnInit(): void {
@@ -25,11 +28,9 @@ export class LoginComponent implements OnInit {
   }
   
   onsubmit(){
-
     this.auth.login(this.loginForm.value)
     .subscribe({
-      next: (data:any)=>{                  
-            // let data = dat.find((u:any)=>u.username == this.loginForm.value.username && this.loginForm.value.password)
+      next: (data:LoginResponse)=>{                  
             if(data.message == "Login successful"){
               localStorage.setItem('usertype', data.userType)
               if(data.userType=='driver'){

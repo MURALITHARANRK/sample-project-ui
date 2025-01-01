@@ -6,6 +6,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { User } from '../../../../models/userDataModel';
 
 @Component({
   selector: 'app-user-details',
@@ -15,9 +16,9 @@ import { MatInputModule } from '@angular/material/input';
   styleUrl: './user-details.component.css'
 })
 export class UserDetailsComponent {
-  userDetails:any
+  userDetails!:User[]
   displayedColumns: string[] = ['customerid', 'name', 'contactnumber', 'emailaddress'];
-  dataSource = new MatTableDataSource<any>();
+  dataSource = new MatTableDataSource<User>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -28,7 +29,7 @@ export class UserDetailsComponent {
     this.dataSource.sort = this.sort;
     this.admin.getAllUsers().subscribe(
       {
-        next: (data:any)=>{
+        next: (data:User[])=>{
           console.log(data);
           this.userDetails = data
           this.dataSource.data = data;

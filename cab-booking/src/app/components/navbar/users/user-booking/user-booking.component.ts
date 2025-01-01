@@ -4,6 +4,10 @@ import { GoogleMap, GoogleMapsModule } from '@angular/google-maps';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../../../../services/user-service/user.service';
 import { CarService } from '../../../../services/car-service/car.service';
+import { LocationCoords } from '../../../../models/locationCoordsModel';
+import { BookingDetails } from '../../../../models/bookingDetailsModel';
+import { Car } from '../../../../models/carModel';
+import { Booking } from '../../../../models/bookingModel';
 
 @Component({
   selector: 'app-user-booking',
@@ -17,11 +21,16 @@ export class UserBookingComponent {
     locationForm: FormGroup;
     currentLocation: string = '';
     submitted = false;
-    locationCoords: any = {currentLat: '', currentLng: '',destinationLat: '', destinationLng: ''}
-    bookingDetails:any
-    distance:any = 0
-    showCarTypes: any;
-    carData:any
+    locationCoords:LocationCoords = {
+      currentLat: 0, 
+      currentLng: 0,
+      destinationLat: 0, 
+      destinationLng: 0
+  }
+    bookingDetails!:BookingDetails
+    distance = 0
+    showCarTypes!: boolean;
+    carData!:Car[]
     userDetailsPresent:boolean = true
     constructor(private fb: FormBuilder, private user: UserService, private car: CarService) {
       this.locationForm = this.fb.group({
@@ -33,7 +42,7 @@ export class UserBookingComponent {
 
     getCarData(){
       this.car.getCarData().subscribe(
-        (data)=>{this.carData = data; console.log(data)}
+        (data:Car[])=>{this.carData = data; console.log(data)}
       )
     }
 
@@ -54,7 +63,7 @@ export class UserBookingComponent {
       let id=this.locationForm.get('carid')?.value
       let endtime=new Date().toLocaleTimeString()
       this.user.endRide(id, endtime).subscribe({
-        next:(data:any)=>{
+        next:(data:string)=>{
           console.log(data);
           alert(data);
           this.locationForm.reset()
@@ -72,7 +81,7 @@ export class UserBookingComponent {
     }
 
     checkUserDetailsPresent(){
-      this.user.getUserDetails(localStorage.getItem('username')).subscribe({
+      this.user.getUserDetails(localStorage.getItem('username') as string).subscribe({
         next: (data)=>{
           if(data)
             this.userDetailsPresent = true
@@ -137,8 +146,8 @@ export class UserBookingComponent {
           if (place && place.formatted_address) {
             
             this.locationForm.patchValue({ destination: place.formatted_address });
-            this.locationCoords.destinationLat = place.geometry?.location?.lat();
-            this.locationCoords.destinationLng = place.geometry?.location?.lng();
+            this.locationCoords.destinationLat = place.geometry?.location?.lat() as number;
+            this.locationCoords.destinationLng = place.geometry?.location?.lng() as number;
           }
         });
     }
@@ -152,12 +161,12 @@ export class UserBookingComponent {
         source: `${this.locationCoords.currentLat},${this.locationCoords.currentLng}`, //change later
         destination: `${this.locationCoords.destinationLat},${this.locationCoords.destinationLng}`, //change later
         carid: this.locationForm.get('carid')?.value,
-        userid: localStorage.getItem('id'),
+        userid: localStorage.getItem('id') as string,
         starttime: new Date().toLocaleTimeString(),
     };
 
       this.user.setBookingDetails(this.bookingDetails).subscribe({
-        next: (data:any)=>{
+        next: (data:Booking)=>{
           console.log(data, "yes");
           this.submitted = true;
         },

@@ -18,7 +18,7 @@
                             </div>
                         </div>
                     </div>
-                    @if(loginForm.controls.username.touched && loginForm.controls.username.invalid){
+                    @if(loginForm.controls['username'].touched && loginForm.controls['username'].invalid){
                     <div class="text-danger mb-2" id="usernameError">
                         Username is required.
                     </div>
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                     </div>
-                    @if(loginForm.controls.password.touched && loginForm.controls.password.invalid){
+                    @if(loginForm.controls['password'].touched && loginForm.controls['password'].invalid){
                         <div class="text-danger mb-2" id="passwordError">
                             Password is required.
                         </div>

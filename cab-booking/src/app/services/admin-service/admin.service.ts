@@ -3,6 +3,9 @@ import { AuthService } from '../auth-service/auth.service';
 import { BehaviorSubject, catchError, map, Observable, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environment/environment';
+import { Car } from '../../models/carModel';
+import { User } from '../../models/userDataModel';
+import { Driver } from '../../models/driverModel';
 
 @Injectable({
   providedIn: 'root'
@@ -46,34 +49,21 @@ export class AdminService {
     },
   ];
 
-  getCarDetailsById(id: any) {
-    // return this.mockCarData$.pipe(
-    //   map((cars:any) => {
-    //     const filteredCars = cars.filter((car: any) => car.id == id);
-    //     if (filteredCars.length === 0) {
-    //       throw new Error(`No cars found for ID: ${id}`);
-    //     }
-    //     return filteredCars;
-    //   }),
-    //   catchError((error) => {
-    //     console.error(error.message);
-    //     return throwError(() => new Error(`Error fetching car details: ${error.message}`));
-    //   })
-    // );
-    return this.http.get(this.API_URL+'car/driver/'+id)
+  getCarDetailsById(id: string) {
+    return this.http.get<Car[]>(this.API_URL+'car/driver/'+id)
   }
 
   getAllUsers(){
     // return this.auth.mockData$
-    return this.http.get(this.API_URL+'admin/users')
+    return this.http.get<User[]>(this.API_URL+'admin/users')
   }
 
   getDriverDetails(){
     // return this.mockDriverData;
-    return this.http.get(this.API_URL+'admin/driver')
+    return this.http.get<Driver[]>(this.API_URL+'admin/driver')
  }
 
- setCarDetails(carData: any) {
+ setCarDetails(carData: Car) {
     return this.http.post(this.API_URL+'admin/create',carData)
 }
 

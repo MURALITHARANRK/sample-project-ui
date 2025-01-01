@@ -3,6 +3,7 @@ import { Form, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsMo
 import { AuthService } from '../../../services/auth-service/auth.service';
 import { UserService } from '../../../services/user-service/user.service';
 import { ToastrService } from 'ngx-toastr';
+import { User } from '../../../models/userDataModel';
 
 @Component({
   selector: 'app-personal-details-modal',
@@ -12,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './personal-details-modal.component.css'
 })
 export class PersonalDetailsModalComponent implements OnInit, OnChanges {
-  @Input() userDetails: any
+  @Input() userDetails!: User
   @ViewChild('modalClose') modalClose!: ElementRef
   userForm:FormGroup
   userDetailsNotAvailable:boolean = true

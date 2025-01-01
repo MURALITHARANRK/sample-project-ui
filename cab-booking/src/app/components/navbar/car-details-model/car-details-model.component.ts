@@ -3,6 +3,7 @@ import { FormControl,FormGroup,ReactiveFormsModule,FormBuilder} from '@angular/f
 import { CarService } from '../../../services/car-service/car.service';
 import { AdminService } from '../../../services/admin-service/admin.service';
 import { ActivatedRoute } from '@angular/router';
+import { Car } from '../../../models/carModel';
 
 @Component({
   selector: 'app-car-details-modal',
@@ -12,7 +13,6 @@ import { ActivatedRoute } from '@angular/router';
   styleUrl: './car-details-model.component.css'
 })
 export class CarDetailsModelComponent implements OnInit, OnChanges{
-   @Input() carDetails: any
    @ViewChild('closeButton') closeButton!: ElementRef
     carForm:FormGroup
     constructor(private fb: FormBuilder, private admin: AdminService, private active: ActivatedRoute){

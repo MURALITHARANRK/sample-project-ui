@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { AuthService } from '../auth-service/auth.service';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { Car } from '../../models/carModel';
+import { Booking } from '../../models/bookingModel';
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +33,11 @@ export class CarService {
   }
   getCarData(){
     // return this.mockCarData
-    return this.http.get(this.API_URL+'user/available')
+    return this.http.get<Car[]>(this.API_URL+'user/available')
   }
 
-  getBookingDetails(id:any){
-    return this.http.get(this.API_URL+'car/booking?carid='+id)
+  getBookingDetails(id:number){
+    return this.http.get<Booking[]>(this.API_URL+'car/booking?carid='+id)
   }
 
   acceptRide(carid:any){

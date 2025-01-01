@@ -41,7 +41,7 @@ export class DriverDetailsComponent implements OnInit {
 
     // Fetching driver details from the admin service
     this.admin.getDriverDetails().subscribe({
-      next: (response: any) => {
+      next: (response: Driver[]) => {
         console.log(response);
         this.dataSource.data = response;
       },

@@ -46,7 +46,7 @@ export class CarInformationComponent implements OnInit {
     const driverId = this.active.snapshot.paramMap.get('id');
     if (driverId) {
       this.admin.getCarDetailsById(driverId).subscribe({
-        next: (cars: any) => {
+        next: (cars: Car[]) => {
           this.carDetails = cars;
           this.dataSource.data = cars;
           console.log(cars);

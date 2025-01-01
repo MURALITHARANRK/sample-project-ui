@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environment/environment';
 import { AuthService } from '../auth-service/auth.service';
+import { User } from '../../models/userDataModel';
+import { BookingDetails } from '../../models/bookingDetailsModel';
+import { Booking } from '../../models/bookingModel';
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +13,15 @@ export class UserService {
   API_URL = environment.API_URL
   constructor(private http:HttpClient, private auth:AuthService) { }
 
-  getUserDetails(username:any){
+  getUserDetails(username:string){
     // return this.auth.mockData$
     // return this.http.get(this.API_URL+'user/'+id as string)
     
     // let username = localStorage.getItem('username')
-    return this.http.get(this.API_URL+'user/name/'+username)
+    return this.http.get<User>(this.API_URL+'user/name/'+username)
   }
 
-  getUserDetailsById(id:any){
+  getUserDetailsById(id:number){
     return this.http.get(this.API_URL+'car?id='+id)
   }
 
@@ -55,9 +58,9 @@ export class UserService {
     return rad * c;
   }
 
-  setBookingDetails(bookingDetails:any){
+  setBookingDetails(bookingDetails:BookingDetails){
     console.log(bookingDetails, "final")
-    return this.http.post(this.API_URL+'user/booking',bookingDetails)
+    return this.http.post<Booking>(this.API_URL+'user/booking',bookingDetails)
   }
 
   endRide(carid:any, endtime:any){

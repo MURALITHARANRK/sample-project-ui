@@ -3,6 +3,8 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth-service/auth.service';
+import { Register } from '../../models/registerModel';
+import { RegisterResponse } from '../../models/registerResponseModel';
 
 @Component({
   selector: 'app-register',
@@ -31,7 +33,8 @@ export class RegisterComponent {
       const user = this.registerForm.value; 
       this.auth.register(user).subscribe(
         {
-          next: (data:any)=>{
+          next: (data:RegisterResponse)=>{
+            console.log(data)
             alert("Registration Sucessful")
             this.router.navigate(['/login'])
         }, 

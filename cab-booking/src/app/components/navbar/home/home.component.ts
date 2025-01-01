@@ -14,7 +14,7 @@ import { RouterModule } from '@angular/router';
 export class HomeComponent implements OnInit {
   x=12;
   y="Not in a ride";
-  userType:any
+  userType:string=''
   constructor(private http: HttpClient, private auth: AuthService){}
   ngOnInit(): void {
     this.userType = this.auth.getUserType()
