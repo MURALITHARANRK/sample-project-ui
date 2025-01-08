@@ -20,6 +20,7 @@ export class UserBookingComponent {
 
     locationForm: FormGroup;
     currentLocation: string = '';
+    endRideText = "Waiting for driver to accept ride"
     submitted = false;
     locationCoords:LocationCoords = {
       currentLat: 0, 
@@ -100,9 +101,68 @@ export class UserBookingComponent {
       this.getUserLocation();
       this.getCarData();
     }
+
+    getBookingDetails(){
+      let userid = localStorage.getItem('id')
+      this.user.getBookingDetails(userid).subscribe({
+        next: (data:any)=>{
+          //filter endtime
+          if(false){
+
+          }
+          else{
+            let address = this.findAddress(data.destination)
+            console.log(address)
+            this.showCarTypes = true
+            this.locationForm.controls['carid'].setValue(data.carid)
+            this.submitted = true
+            let x = setInterval(()=>{
+              this.car.getCarDetailsById(this.locationForm.get('carid')?.value).subscribe({
+              next: (data:Car)=>{
+                console.log(data)
+                if(data.availability == false){
+                  this.endRideText = "End Ride"
+                  clearInterval(x)
+                }
+              },
+              error: (error:any)=>{
+                console.error(error)
+              }
+              })
+            },3000)
+
+          }
+        },
+        error: ()=>{
+
+        }
+      })
+    }
+
+    findAddress(location:string){
+      const [lat, lng] = location.split(",").map((coord:string) => parseFloat(coord.trim()));
+      console.log(lat, lng);
+      
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode(
+        { location: { lat: lat as number, lng: lng as number } },
+        (results:any, status:any) => {
+          if (status === 'OK' && results.length > 0) {
+            console.log(results[0].formatted_address);
+            this.locationForm.get('destination')?.setValue(results[0].formatted_address)
+            return results[0].formatted_address
+          } 
+          else {
+            return "No address found"
+          }
+        }
+      );
+    }
   
     ngAfterViewInit(): void {
       this.initializeAutocomplete();
+      this.getBookingDetails();
+
     }
   
     getUserLocation(): void {
@@ -174,6 +234,20 @@ export class UserBookingComponent {
           console.log(error);
         }
       })
+      let x = setInterval(()=>{
+        this.car.getCarDetailsById(this.bookingDetails.carid).subscribe({
+        next: (data:Car)=>{
+          console.log(data)
+          if(data.availability == false){
+            this.endRideText = "End Ride"
+            clearInterval(x)
+          }
+        },
+        error: (error:any)=>{
+          console.error(error)
+        }
+        })
+      },3000)
       console.log(this.bookingDetails);
       
       console.log(this.locationCoords);

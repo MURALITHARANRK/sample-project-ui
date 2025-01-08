@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import {  HttpTestingController } from '@angular/common/http/testing';
 import { CarService } from './car.service';
 import { AuthService } from '../auth-service/auth.service';
 import { environment } from '../../environment/environment';
@@ -14,7 +14,7 @@ describe('CarService', () => {
     mockAuthService = jasmine.createSpyObj('AuthService', ['mockData$']);
 
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [],
       providers: [
         CarService,
         { provide: AuthService, useValue: mockAuthService },
@@ -43,7 +43,7 @@ describe('CarService', () => {
   });
 
   it('should fetch available car data via GET request', () => {
-    const mockCarData = [{ id: 1, car: 'Test Car' }];
+    const mockCarData:any = [{ id: 1, car: 'Test Car' }];
     service.getCarData().subscribe((data) => {
       expect(data).toEqual(mockCarData);
     });
@@ -55,7 +55,7 @@ describe('CarService', () => {
 
   it('should fetch booking details for a given car ID', () => {
     const carId = 123;
-    const mockBookingDetails = { bookingId: 456 };
+    const mockBookingDetails:any = { bookingId: 456 };
 
     service.getBookingDetails(carId).subscribe((data) => {
       expect(data).toEqual(mockBookingDetails);

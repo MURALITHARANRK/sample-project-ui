@@ -13,9 +13,9 @@ export class CarService {
   API_URL = environment.API_URL
   constructor(private http: HttpClient, private auth: AuthService) {}
 
- getCarDetails(){
-    return this.auth.mockData$
-  }
+  getCarDetailsById(id:string){
+      return this.http.get<Car>(this.API_URL+'car/'+id)
+    }
   getCarData(){
     // return this.mockCarData
     return this.http.get<Car[]>(this.API_URL+'user/available')

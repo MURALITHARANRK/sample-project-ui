@@ -5,6 +5,7 @@ import { AuthService } from '../auth-service/auth.service';
 import { User } from '../../models/userDataModel';
 import { BookingDetails } from '../../models/bookingDetailsModel';
 import { Booking } from '../../models/bookingModel';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,18 @@ import { Booking } from '../../models/bookingModel';
 export class UserService {
   API_URL = environment.API_URL
   constructor(private http:HttpClient, private auth:AuthService) { }
+
+  mockBookingData:BehaviorSubject<any> = new BehaviorSubject({
+    bookingid: 1,
+    carid:'2',
+    destination:	'20.8972092,105.5738179',
+    endtime: '4:38:37 PM',
+    source:	'12.9040384,80.0882688',
+    starttime: '3:53:48 PM'	,
+    userid: '1'
+  })
+
+  mockBookingData$:Observable<any> = this.mockBookingData.asObservable()
 
   getUserDetails(username:string){
     // return this.auth.mockData$
@@ -61,6 +74,10 @@ export class UserService {
   setBookingDetails(bookingDetails:BookingDetails){
     console.log(bookingDetails, "final")
     return this.http.post<Booking>(this.API_URL+'user/booking',bookingDetails)
+  }
+
+  getBookingDetails(userid:any){
+    return this.mockBookingData$
   }
 
   endRide(carid:any, endtime:any){
