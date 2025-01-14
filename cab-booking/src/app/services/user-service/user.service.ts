@@ -77,7 +77,7 @@ export class UserService {
   }
 
   getBookingDetails(userid:any){
-    return this.mockBookingData$
+    return this.http.get(this.API_URL+'admin/user/'+userid)
   }
 
   endRide(carid:any, endtime:any){

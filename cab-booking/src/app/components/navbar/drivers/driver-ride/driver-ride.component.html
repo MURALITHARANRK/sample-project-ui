@@ -1,5 +1,5 @@
 <div class="container">
-  <button class="refresh-btn btn btn-primary mb-3" (click)="getCarDetails()">Refresh</button>
+  <!-- <button class="refresh-btn btn btn-primary mb-3" (click)="getCarDetails()">Refresh</button> -->
 
   <div *ngIf="!showCarDetails" class="message">
     Waiting for the details...
@@ -27,7 +27,7 @@
             <td>{{car.registrationNumber}}</td>
   
             <td>
-              <button class="btn btn-info btn-sm" (click)="getBookingDetails(car.id, car.availability)">View booking</button>
+              <button class="btn btn-info btn-sm" (click)="getBookingDetails(car.id, car.availability, car.model, car.brand)">View booking</button>
             </td>
           </tr>
         }
@@ -35,47 +35,55 @@
       </table>
     </div>
 
-    <div *ngIf="showBookingDetails">
-      <h3><p><b><u>Booking Details</u></b></p></h3>
-      <table class="table table-bordered">
-        <thead class="thead-dark">
-          <tr>
-            <th>#</th>
-            <th>Source</th>
-            <th>Destination</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for(booking of bookingDetails; track booking.bookingid){
-          <tr>
-            <td>{{ booking.bookingid }}</td>
-            <td>
-              <a [href]="findLocationUrl(booking.source)" target="_blank" rel="noopener noreferrer"> 
-                  click here for pickup Location
-              </a>
-            </td>
-            <td>
-              <a [href]="findLocationUrl(booking.destination)" target="_blank" rel="noopener noreferrer">
-                  click here for Drop Location
-              </a>
-            </td>
-            <td>
-              @if(booking.endtime==null){
-                <button class="btn btn-info btn-sm" (click)="viewDetails(booking.userid)">
-                  View Details
-                </button>
-              }
-              @else{
-                <p>Ride Completed</p>
-              }
+    @defer(){
+      <div *ngIf="showBookingDetails">
+        <h3><p><b><u>Booking Details for {{primaryCarBrand}} {{primaryCarModel}}</u></b></p></h3>
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>#</th>
+              <th>Source</th>
+              <th>Destination</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for(booking of bookingDetails; track booking.bookingid){
+            <tr>
+              <td>{{ booking.bookingid }}</td>
+              <td>
+                <a [href]="findLocationUrl(booking.source)" target="_blank" rel="noopener noreferrer"> 
+                    {{booking.sourceAddress}}
+                </a>
+              </td>
+              <td>
+                <a [href]="findLocationUrl(booking.destination)" target="_blank" rel="noopener noreferrer">
+                  {{booking.destinationAddress}}
+                </a>
+              </td>
+              <td>
+                @if(booking.endtime==null){
+                  <button class="btn btn-info btn-sm" (click)="viewDetails(booking.userid)">
+                    View Details
+                  </button>
+                }
+                @else{
+                  <p>Ride Completed</p>
+                }
+  
+              </td>
+            </tr>
+          }
+          </tbody>
+        </table>
+      </div>
+    }
+    @placeholder {
+      <div *ngIf="showBookingDetails">
+        loading...
+      </div>
+    }
 
-            </td>
-          </tr>
-        }
-        </tbody>
-      </table>
-    </div>
     <div *ngIf="!showBookingDetails" class="message">
       No Booking Details Available
     </div>

@@ -22,13 +22,15 @@ import { Booking } from '../../../../models/bookingModel';
 export class DriverRideComponent implements OnInit {
   
   showCarDetails: boolean = false;
-  bookingDetails!:Booking[]
+  bookingDetails!:any
   carDetails!:Car[]
   selectedUser:any; //multiple uses
   primaryCar!:number
   primaryCarAvailability!:boolean
   showBookingDetails: boolean = false;
   acceptText:string=''
+  primaryCarBrand: string='';
+  primaryCarModel: string='';
   constructor(private auth: AuthService, private car: CarService, private user: UserService, private admin: AdminService){
 
   }
@@ -50,42 +52,53 @@ export class DriverRideComponent implements OnInit {
     })
   }
 
-  getBookingDetails(carid:number, availability:boolean){
-    this.selectedUser = ''
+  getBookingDetails(carid: number, availability: boolean, model: string, brand: string): void {
+    this.selectedUser = '';
     this.car.getBookingDetails(carid).subscribe({
-      next: (data:Booking[])=>{
-        console.log(data);
-        this.bookingDetails = data
-        this.primaryCar = carid
-        this.primaryCarAvailability = availability
-        this.showBookingDetails = true
+      next: async (data: Booking[]) => {
+        this.bookingDetails = await this.processAddresses(data);
+        console.log(this.bookingDetails);
+        this.primaryCar = carid;
+        this.primaryCarBrand = brand;
+        this.primaryCarModel = model;
+        this.primaryCarAvailability = availability;
+        this.showBookingDetails = true;
       },
-      error: (error:any)=>{
-
+      error: (error: any) => {
         console.log(error);
-        this.showBookingDetails = false
+        this.showBookingDetails = false;
       }
-    })
+    });
+  }
+  
+  async processAddresses(data: Booking[]): Promise<Booking[]> {
+    const promises = data.map(async (booking) => {
+      const sourceAddress = await this.findAddress(booking.source);
+      const destinationAddress = await this.findAddress(booking.destination);
+      return { ...booking, sourceAddress, destinationAddress };
+    });
+  
+    return Promise.all(promises); 
+  }
+  
+  async findAddress(location: string): Promise<string> {
+    const [lat, lng] = location.split(',').map((coord: string) => parseFloat(coord.trim()));
+  
+    return new Promise((resolve) => {
+      const geocoder = new google.maps.Geocoder();
+      geocoder.geocode(
+        { location: { lat, lng } },
+        (results: any, status: any) => {
+          if (status === 'OK' && results.length > 0) {
+            resolve(results[0].formatted_address);
+          } else {
+            resolve('No address found');
+          }
+        }
+      );
+    });
   }
 
-  findAddress(location:string){
-    const [lat, lng] = location.split(",").map((coord:string) => parseFloat(coord.trim()));
-    console.log(lat, lng);
-    
-    const geocoder = new google.maps.Geocoder();
-    geocoder.geocode(
-      { location: { lat: lat as number, lng: lng as number } },
-      (results:any, status:any) => {
-        if (status === 'OK' && results.length > 0) {
-          console.log(results[0].formatted_address);
-          return results[0].formatted_address
-        } 
-        else {
-          return "click here for location"
-        }
-      }
-    );
-  }
 
   findLocationUrl(location:string){    
     return 'https://google.com/maps?q='+location

@@ -6,6 +6,7 @@ import { CarDetailsModelComponent } from "./car-details-model/car-details-model.
 import { DriverDetailsComponent } from "./Admin/driver-details/driver-details.component";
 import { CarInformationComponent } from "./Admin/car-information/car-information.component";
 import { adminGuard } from "../../guards/admin-guard/admin.guard";
+import { UserBookingDetailsComponent } from "./home/user-booking-details/user-booking-details.component";
 
 export const navbarRoutes: Routes = [
     {
@@ -15,7 +16,11 @@ export const navbarRoutes: Routes = [
         children: [
             {
                 path: 'home',
-                loadComponent: ()=>import('./home/home.component').then(c=>c.HomeComponent)
+                loadComponent: ()=>import('./home/home.component').then(c=>c.HomeComponent),
+            },
+            {
+                path: 'user-booking-details',
+                loadComponent: ()=>import('./home/user-booking-details/user-booking-details.component').then(c=>c.UserBookingDetailsComponent)
             },
             {
                 path: 'user-booking',

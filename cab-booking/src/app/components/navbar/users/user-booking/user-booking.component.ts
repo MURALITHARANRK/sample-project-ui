@@ -60,13 +60,12 @@ export class UserBookingComponent {
     }
 
     onEndRide() {
-      //api call
       let id=this.locationForm.get('carid')?.value
       let endtime=new Date().toLocaleTimeString()
       this.user.endRide(id, endtime).subscribe({
         next:(data:string)=>{
           console.log(data);
-          alert(data);
+          alert("Ride has been completed. You have reached your destination. ");
           this.locationForm.reset()
           this.getUserLocation();
           this.submitted = false
@@ -105,12 +104,15 @@ export class UserBookingComponent {
     getBookingDetails(){
       let userid = localStorage.getItem('id')
       this.user.getBookingDetails(userid).subscribe({
-        next: (data:any)=>{
-          //filter endtime
-          if(false){
-
+        next: (bookingdata:any)=>{
+          console.log(bookingdata)
+          let flag = bookingdata.findIndex((item:any) => item.endtime == null);
+          console.log(flag)
+          if(flag == -1){
+            
           }
           else{
+            let data = bookingdata[flag]
             let address = this.findAddress(data.destination)
             console.log(address)
             this.showCarTypes = true
@@ -133,8 +135,10 @@ export class UserBookingComponent {
 
           }
         },
-        error: ()=>{
-
+        error: (error)=>{
+          if(error.status==404){
+            console.log("No booking data found")
+          }
         }
       })
     }

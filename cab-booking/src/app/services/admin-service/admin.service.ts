@@ -58,6 +58,10 @@ export class AdminService {
     return this.http.get<User[]>(this.API_URL+'admin/users')
   }
 
+  getAllBooking(){
+    return this.http.get(this.API_URL)
+  }
+
   getDriverDetails(){
     // return this.mockDriverData;
     return this.http.get<Driver[]>(this.API_URL+'admin/driver')

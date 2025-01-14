@@ -1,22 +1,26 @@
 
-<body>
+@if(userType != 'driver'){
+  <body>
     <div class="card-container">
       <!-- Card 1 -->
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3>{{x}}</h3>
-          <p>Number of bookings</p>
+       @if(userType == 'user'){
+        <div class="small-box bg-info">
+          <div class="inner">
+            <h3>{{bookingCount}}</h3>
+            <p>Number of bookings</p>
+          </div>
+          <div class="icon">
+              <i class="fas fa-taxi"></i>
+          </div>
+          <a routerLink="../user-booking-details" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-        <div class="icon">
-            <i class="fas fa-taxi"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
+       }
+
       <!-- Card 2 -->
        @if(userType != 'admin'){
       <div class="small-box bg-success">
         <div class="inner">
-          <h3>{{y}}<sup style="font-size: 20px"></sup></h3>
+          <h3>{{ridingStatus}}<sup style="font-size: 20px"></sup></h3>
           <p>Riding status</p>
         </div>
         <div class="icon">
@@ -50,4 +54,11 @@
     }
     </div> 
   </body>
+}
+@else{
+  <div class="message p-4">
+    Check your schedule to stay updated on today's assigned trips.
+  </div>
+}
+
   
