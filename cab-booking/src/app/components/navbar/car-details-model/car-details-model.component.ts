@@ -1,4 +1,4 @@
-import { Component,ElementRef,Input,OnChanges,OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component,ElementRef,EventEmitter,Input,OnChanges,OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { FormControl,FormGroup,ReactiveFormsModule,FormBuilder} from '@angular/forms';
 import { CarService } from '../../../services/car-service/car.service';
 import { AdminService } from '../../../services/admin-service/admin.service';
@@ -14,6 +14,7 @@ import { Car } from '../../../models/carModel';
 })
 export class CarDetailsModelComponent implements OnInit, OnChanges{
    @ViewChild('closeButton') closeButton!: ElementRef
+   @Output() submitted = new EventEmitter<boolean>()
     carForm:FormGroup
     constructor(private fb: FormBuilder, private admin: AdminService, private active: ActivatedRoute){
       this.carForm = this.fb.group({
@@ -39,9 +40,13 @@ export class CarDetailsModelComponent implements OnInit, OnChanges{
           next: (data)=>{
             console.log(data);
             this.closeButton.nativeElement.click()
+            this.submitted.emit(true)
           },
           error: (error)=>{
             console.log(error);
+            if(error.status ==409){
+              alert(error.error)
+            }
           }
         }
       )

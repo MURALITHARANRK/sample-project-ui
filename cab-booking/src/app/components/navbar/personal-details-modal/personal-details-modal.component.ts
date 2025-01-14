@@ -52,6 +52,7 @@ export class PersonalDetailsModalComponent implements OnInit, OnChanges {
       {
         next: (data)=>{
           console.log(data);
+          alert("Please Login Again to Start Booking")
           this.modalClose.nativeElement.click()
           this.userDetailsNotAvailable = false
         },

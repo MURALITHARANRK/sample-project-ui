@@ -16,6 +16,9 @@ import { AdminService } from '../../../services/admin-service/admin.service';
 export class HomeComponent implements OnInit, AfterViewInit {
   bookingCount:any;
   ridingStatus="Not in a ride";
+  userCount:number = 0
+  driverCount:number = 0
+  userDetailsPresent:boolean = true
   userType:string=''
   constructor(private http: HttpClient, private auth: AuthService, private user: UserService, private admin: AdminService){}
 
@@ -33,7 +36,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
             }
           },
           error: (error)=>{
-  
+            this.bookingCount = 0
           }
         })
       }      
@@ -41,7 +44,39 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
   }
   ngOnInit(): void {
+    this.checkUserDetailsPresent()
     this.userType = this.auth.getUserType()
+    this.admin.getAllUsers().subscribe({
+      next: (data:any)=>{
+        this.userCount = data.length
+      },
+      error: (error)=>{
+        this.userCount = 0
+      }
+    })
+    this.admin.getDriverDetails().subscribe({
+      next: (data:any)=>{
+        this.driverCount = data.length
+      },
+      error: (error)=>{
+        this.driverCount = 0
+      }
+    })
+  }
+
+  checkUserDetailsPresent(){
+    this.user.getUserDetails(localStorage.getItem('username') as string).subscribe({
+      next: (data)=>{
+        if(data)
+          this.userDetailsPresent = true
+        console.log(data);
+        
+      },
+      error: (error)=>{
+        if(error.status==409)
+          this.userDetailsPresent = false
+      }
+    })
   }
 
   

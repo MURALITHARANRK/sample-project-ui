@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterContentChecked, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -57,6 +57,24 @@ export class CarInformationComponent implements OnInit {
 
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+  
+  onFormSubmit(status:boolean){   
+      if(status == true){
+        const driverId = this.active.snapshot.paramMap.get('id');
+        if (driverId) {
+          this.admin.getCarDetailsById(driverId).subscribe({
+            next: (cars: Car[]) => {
+              this.carDetails = cars;
+              this.dataSource.data = cars;
+              console.log(cars);
+            },
+            error: (err:any) => {
+              console.error('Error:', err)
+            }
+          });
+        }
+      }
   }
 
   applyFilter(event: Event): void {

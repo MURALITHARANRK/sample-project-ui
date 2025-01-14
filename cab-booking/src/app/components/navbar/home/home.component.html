@@ -1,9 +1,9 @@
 
+
 @if(userType != 'driver'){
   <body>
     <div class="card-container">
-      <!-- Card 1 -->
-       @if(userType == 'user'){
+       @if(userType == 'user' && userDetailsPresent){
         <div class="small-box bg-info">
           <div class="inner">
             <h3>{{bookingCount}}</h3>
@@ -14,10 +14,6 @@
           </div>
           <a routerLink="../user-booking-details" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
         </div>
-       }
-
-      <!-- Card 2 -->
-       @if(userType != 'admin'){
       <div class="small-box bg-success">
         <div class="inner">
           <h3>{{ridingStatus}}<sup style="font-size: 20px"></sup></h3>
@@ -28,10 +24,18 @@
         </div>
       </div>
     }
+    @if(!userDetailsPresent){
+      <div class="container">
+        <div class="message">
+          Please Enter your contact details to book a ride
+        </div>
+      </div>
+    
+    }
     @if(userType=='admin'){
       <div class="small-box bg-warning">
         <div class="inner">
-          <h3>44</h3>
+          <h3>{{userCount}}</h3>
           <p>User Registrations</p>
         </div>
         <div class="icon">
@@ -43,7 +47,7 @@
     @if(userType=='admin'){
       <div class="small-box bg-danger">
         <div class="inner">
-          <h3>65</h3>
+          <h3>{{driverCount}}</h3>
           <p>Driver Registrations</p>
         </div>
         <div class="icon">
