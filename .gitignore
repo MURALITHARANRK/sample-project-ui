@@ -1,2 +1,9 @@
+# Node
+node_modules/
+cab-booking/node_modules/
 
-cab-booking/src/app/enviroments/environment.ts
+# Angular build
+dist/
+
+# Environment file
+cab-booking/src/app/environments/environment.ts
